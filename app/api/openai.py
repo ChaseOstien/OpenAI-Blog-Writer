@@ -25,17 +25,19 @@ class Generate_blog(Resource):
             temperature=0.5
         )
 
-        blog_post = response.choices[0].message
-        print(blog_post)
+        blog_post = response.choices[0].message.content
 
-        blogs_data = []
-        for blog in blog_post:
-            blog_data = {
-                'blog_text': blog
-            }
+        title = blog_post.split('\n\n')[0]
+        content = '\n\n'.join(blog_post.split('\n\n')[1:])
 
-            blogs_data.append(blog_data)
+        # blogs_data = []
+        blog_data = {
+            'title': title,
+            'content': content
+        }
+
+        # blogs_data.append(blog_data)
     
-        return jsonify(blogs_data)
+        return jsonify(blog_data)
 
 api.add_resource(Generate_blog, '/generate')

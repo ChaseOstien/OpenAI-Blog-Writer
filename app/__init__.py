@@ -4,6 +4,7 @@ from flask_restful import Resource, Api
 from dotenv import load_dotenv
 import openai
 from app.api import generate_blog
+from flask_cors import CORS
 
 load_dotenv()
 client = OpenAI()
@@ -15,6 +16,8 @@ def create_app(test_config=None):
     api = Api(app)
 
     app.register_blueprint(generate_blog)
+
+    CORS(app)
 
     return app
 
