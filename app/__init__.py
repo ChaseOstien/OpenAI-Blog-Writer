@@ -20,27 +20,3 @@ def create_app(test_config=None):
     CORS(app)
 
     return app
-
-# completion = client.chat.completions.create(
-#   model="gpt-3.5-turbo",
-#   messages=[
-#     {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},
-#     {"role": "user", "content": "Compose a poem that explains the concept of recursion in programming."}
-#   ]
-# )
-
-# print(completion.choices[0].message)
-
-# prompt = [
-#     {"role": "system", "content": "You are a blog writer, skilled in writing clear, engaging and helpful blog posts that can be used for landing pages and add campaigns."},
-#     {"role": "user", "content": "Write an article about the importance of building a good credit score."}
-# ]
-
-# response = client.chat.completions.create(
-#     model='gpt-3.5-turbo-1106',
-#     messages=prompt,
-#     max_tokens=750,
-#     temperature=0.5
-# )
-
-# print(response.choices[0].message)
