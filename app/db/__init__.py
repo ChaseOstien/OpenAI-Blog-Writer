@@ -2,10 +2,11 @@ from dotenv import load_dotenv
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy import create_engine
 from flask import g
+from os import getenv
 
 load_dotenv()
 
-engine = create_engine('DB_URL', echo=True, pool_size=20, max_overflow=0)
+engine = create_engine(getenv('DB_URL'), echo=True, pool_size=20, max_overflow=0)
 Session = sessionmaker(bind=engine)
 Base = declarative_base()
 

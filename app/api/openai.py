@@ -14,8 +14,8 @@ class Generate_blog(Resource):
     def get(self):
 
         prompt = [
-            {"role": "system", "content": "You are a blog writer, skilled in writing clear, engaging and helpful blog posts that can be used for landing pages and add campaigns."},
-            {"role": "user", "content": "Write an article about the importance of building a good credit score."}
+            {"role": "system", "content": "You are a blog writer, skilled in writing clear, engaging and helpful blog posts that can be used for landing pages and add campaigns. You always return content with lines seperated by double line breaks."},
+            {"role": "user", "content": "Write an article about credit utilization and it's affects on an individuals credit score."}
 ]
 
         response = client.chat.completions.create(
