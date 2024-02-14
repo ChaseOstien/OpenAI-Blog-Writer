@@ -3,6 +3,8 @@ from flask import Blueprint, jsonify
 from openai import OpenAI
 import openai
 from dotenv import load_dotenv
+from app.db import get_db
+from app.models import Blog
 
 generate_blog = Blueprint('api', __name__)
 api = Api(generate_blog)
@@ -30,13 +32,25 @@ class Generate_blog(Resource):
         title = blog_post.split('\n\n')[0]
         content = '\n\n'.join(blog_post.split('\n\n')[1:])
 
-        # blogs_data = []
         blog_data = {
             'title': title,
             'content': content
         }
 
-        # blogs_data.append(blog_data)
+        new_blog = Blog(
+            title = blog_data['title'],
+            content = blog_data['content']
+        )
+
+        with get_db() as db:
+            try:
+                db.add(new_blog)
+            except:
+                db.rollback()
+                return jsonify(message = 'Blog failed to save!'), 500
+            
+            else:
+                db.commit()
     
         return jsonify(blog_data)
 
