@@ -10,20 +10,21 @@ function App() {
       setClientPrompt(e.target.value)
     }
 
-    async function fetchBlog() {
+    async function fetchBlog(e) {
+      e.preventDefault();
       console.log(clientPrompt)
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ clientPrompt: clientPrompt })
-      };
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ clientPrompt: clientPrompt })
+        };
 
       console.log('Clicked')
-      const response = await fetch('http://127.0.0.1:5000/generate', requestOptions);
-      console.log(response)
-      const data = await response.json();
-      console.log(data)
-      setBlogTitle(data.title);
+        const response = await fetch('http://127.0.0.1:5000/generate', requestOptions);
+          console.log(response)
+            const data = await response.json();
+          console.log(data)
+        setBlogTitle(data.title);
       setBlogContent(data.content)
     }
 
