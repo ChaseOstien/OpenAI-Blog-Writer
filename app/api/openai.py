@@ -1,4 +1,4 @@
-from flask_restful import Resource, Api
+from flask_restful import Resource, Api, reqparse
 from flask import Blueprint, jsonify
 from openai import OpenAI
 import openai
@@ -13,13 +13,19 @@ load_dotenv()
 client = OpenAI()
 
 class Generate_blog(Resource):
-    def get(self):
+    def post(self):
+
+        parser = reqparse.RequestParser()
+        parser.add_argument('clientPrompt')
+        args = parser.parse_args()
+        client_prompt = args.clientPrompt
+        print(client_prompt)
 
         prompt = [
             {"role": "system", "content": "You are a blog writer, skilled in writing clear, engaging and helpful blog posts that can be used for landing pages and add campaigns. You always return content with lines seperated by double line breaks."},
-            {"role": "user", "content": "Write an article about credit utilization and it's affects on an individuals credit score."}
+            {"role": "user", "content": client_prompt}
 ]
-
+        print(prompt)
         response = client.chat.completions.create(
             model='gpt-3.5-turbo-1106',
             messages=prompt,
