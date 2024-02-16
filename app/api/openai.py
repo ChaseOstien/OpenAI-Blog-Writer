@@ -54,7 +54,6 @@ class Generate_blog(Resource):
             except:
                 db.rollback()
                 return jsonify(message = 'Blog failed to save!'), 500
-            
             else:
                 db.commit()
     
