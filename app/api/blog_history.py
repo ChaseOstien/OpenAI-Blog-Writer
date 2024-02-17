@@ -8,24 +8,40 @@ api = Api(query_blogs)
 
 class Query_blogs(Resource):
     def get(self):
-
         with get_db() as db:
             try:
-                blog_history = db.query(Blog).order_by(Blog.created_at.asc()).all()
+                all_blogs = db.query(Blog).order_by(Blog.created_at.asc()).all()
             except:
                 db.rollback()
                 return jsonify(message = 'Blog history failed to load!'), 500
             else:
-                title = blog_history.title
-                content = blog_history.content
-                generated = blog_history.created_at
+                blog_data = []
+                for blog in all_blogs:
+                    blog_history = {
+                        'id': blog.id,
+                        'title': blog.title,
+                        'content': blog.content,
+                        'generated': blog.created_at
+                    }
+                    blog_data.append(blog_history)
 
+                return jsonify(blog_data)
+            
+    def put(self, id):
+        with get_db() as db:
+            try:
+                one_blog = db.query(Blog).filter(Blog.id == id).one()
+            except:
+                db.rollback()
+                return jsonify(message = 'Blog failed to load!'), 500
+            else:
                 blog = {
-                    'title': title,
-                    'content': content,
-                    'generated': generated
+                    'id': one_blog.id,
+                    'title': one_blog.title,
+                    'content': one_blog.content,
+                    'generated': one_blog.created_at
                 }
-
-                return jsonify(blog)
+            return jsonify(blog)
 
 api.add_resource(Query_blogs, '/history')
+api.add_resource(Query_blogs, '/history/<int:id>', endpoint='get_by_id')
