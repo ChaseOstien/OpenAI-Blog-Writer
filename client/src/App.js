@@ -4,20 +4,37 @@ import { useState } from 'react';
 function App() {
     const [blogTitle, setBlogTitle] = useState('')
     const [blogContent, setBlogContent] = useState('')
+    const [clientPrompt, setClientPrompt] = useState('');
 
-    async function fetchBlog() {
+    const handleChange = (e) => {
+      setClientPrompt(e.target.value)
+    }
+
+    async function fetchBlog(e) {
+      e.preventDefault();
+      console.log(clientPrompt)
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ clientPrompt: clientPrompt })
+        };
+
       console.log('Clicked')
-      const response = await fetch('http://127.0.0.1:5000/generate');
-      const data = await response.json();
-      setBlogTitle(data.title);
+        const response = await fetch('http://127.0.0.1:5000/generate', requestOptions);
+          console.log(response)
+            const data = await response.json();
+          console.log(data)
+        setBlogTitle(data.title);
       setBlogContent(data.content)
-      console.log(response)
     }
 
 
   return (
     <div className="App">
-      <button className='button' onClick={fetchBlog}>Generate!</button>
+      <form className='form' onSubmit={fetchBlog}>
+        <input type='text' name="clientPrompt" onChange={handleChange} placeholder='Enter your desired prompt!'></input>
+        <button type="submit" className='button'>Generate!</button>
+      </form>
       <h2>{blogTitle}</h2>
       {blogContent.split('\n\n').map((paragraph, index) => (
         <p key={index}>{paragraph}</p>
