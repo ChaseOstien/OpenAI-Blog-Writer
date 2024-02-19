@@ -41,5 +41,3 @@ class User(Base):
             raise AssertionError('Invalid email format!')
         
         return email
-    
-    

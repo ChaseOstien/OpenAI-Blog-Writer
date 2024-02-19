@@ -24,7 +24,7 @@ export default function HistoryBar({ blogContent, singleBlog }) {
 
     return (
         <div className='historyBar'>
-            <h1>Blog History</h1>
+            <h1 className='text-onBackground'>Blog History</h1>
             {blogHistory.map((blog) => (
                 <SingleBlog key={blog.id} blog={blog} singleBlog={singleBlog}/>
             ))}

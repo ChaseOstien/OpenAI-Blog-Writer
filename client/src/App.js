@@ -35,20 +35,21 @@ function App() {
     };
 
   return (
-    <><div className="App">
+    <div className='bg-darkGrey'>
+    <div className="App">
       <form className='form' onSubmit={fetchBlog}>
         <input type='text' name="clientPrompt" onChange={handleChange} placeholder='Enter your desired prompt!'></input>
-        <button type="submit" className='button'>Generate!</button>
+        <button type="submit" className='button text-onBackground'>Generate!</button>
       </form>
       <h2>{blogTitle}</h2>
       {blogContent.split('\n\n').map((paragraph, index) => (
         <p key={index}>{paragraph}</p>
       ))}
     </div>
-    <div className='historyBar'>
-      <HistoryBar blogContent={blogContent} singleBlog={singleBlog}/>
+      <div className='historyBar'>
+        <HistoryBar blogContent={blogContent} singleBlog={singleBlog}/>
+      </div>
     </div>
-    </>
   );
 }
 
