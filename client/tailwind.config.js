@@ -12,9 +12,18 @@ module.exports = {
       lg: '976px',
       xl: '1440px',
     },
+    spacing: {
+      '1': '8px',
+      '2': '12px',
+      '3': '16px',
+      '4': '24px',
+      '5': '32px',
+      '6': '48px',
+    },
     colors: {
       'darkPrimary': '#1F1B24',
       'darkGrey': '#121212',
+      'darkGreyOpaque': 'rgba(35, 35, 35, 0.50)',
       'darkPurple': '#1F1B24',
       'primaryPurple': '#BB86FC',
       'primaryVariant': '#3700B3',
@@ -24,7 +33,9 @@ module.exports = {
       'onSecondary': '#000000',
       'onBackground': '#FFFFFF',
       'onSurface': '#FFFFFF',
-      'onError': '#000000'
+      'onError': '#000000',
+      'slateDark': '#475569',
+      'slateLight': '#cbd5e1'
     },
     extend: {
       fontFamily: {
