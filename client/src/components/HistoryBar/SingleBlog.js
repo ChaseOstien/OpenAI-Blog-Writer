@@ -20,7 +20,7 @@ export default function SingleBlog({ blog, singleBlog }) {
 
     return (
         <div key={blog.id}>
-            <button className="titleButton" onClick={() => fetchOneBlog(blog.id)}>{blog.title}</button>
+            <button className="titleButton text-onBackground" onClick={() => fetchOneBlog(blog.id)}>{blog.title}</button>
         </div> 
     )
 }
