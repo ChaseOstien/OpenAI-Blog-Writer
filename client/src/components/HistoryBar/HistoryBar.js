@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import './historybar.css'
 import { useState, useEffect } from 'react'
 import SingleBlog from './SingleBlog'
@@ -17,7 +18,6 @@ export default function HistoryBar({ blogContent, singleBlog }) {
                 console.log('Error fetching data', error)
             }
         }
-
         getBlogs();
     },[blogContent])
 
