@@ -2,7 +2,24 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-#root {
+body {
   background-color: #121212;
-  
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
 }
+
+.icon {
+  color: #BB86FC;
+}
+
+/* .menuItem {
+  background-color: ;
+} */
+
+/* .menuItem:hover {
+  background-color:  #BB86FC;
+} */
+
+

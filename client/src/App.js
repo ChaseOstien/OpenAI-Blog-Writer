@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import HistoryBar from './components/HistoryBar/HistoryBar';
 
+
 function App() {
     const [blogTitle, setBlogTitle] = useState('')
     const [blogContent, setBlogContent] = useState('')
@@ -35,7 +36,8 @@ function App() {
     };
 
   return (
-    <div className='h-dvh'>
+    <div className='flex h-dvh'>
+      <HistoryBar blogContent={blogContent} singleBlog={singleBlog}/>
     <div className="App container p-4">
       <h2 className='text-onBackground'>{blogTitle}</h2>
       {blogContent.split('\n\n').map((paragraph, index) => (
@@ -43,16 +45,13 @@ function App() {
       ))}
       <form className='my-4 flex w-4/5 mx-auto justify-evenly bg-darkGreyOpaque p-3 hover:transition-opacity rounded-lg shadow-xl' onSubmit={fetchBlog}>
         <div className="w-3/5">
-          <input type="text" name="clientPrompt" onChange={handleChange} className=" p-2  text-md rounded-lg w-full border border-slateDark bg-darkGrey shadow-sm focus:ring-slateLight focus:border-slateLight text-slateDark hover:border-slateLight focus:text-slateLight" placeholder="Enter your prompt..."></input>
+          <input type="text" name="clientPrompt" onChange={handleChange} className="p-2  text-md rounded-lg w-full border border-slateDark bg-darkGrey shadow-sm focus:ring-primaryPurple focus:border-slateLight text-slateDark hover:border-primaryPurple focus:text-slateLight" placeholder="Enter your prompt..."></input>
         </div>
         <div className="">
-          <button type="submit" className='shadow-md p-2 rounded-lg text-slateDark border border-slateDark focus:border-slate-500 hover:border-slateLight hover:text-slateLight'>Generate!</button>
+          <button type="submit" className='shadow-md p-2 rounded-lg bg-darkGrey text-slateDark border border-slateDark focus:border-primaryPurple hover:border-primaryPurple hover:text-slateLight'>Generate!</button>
         </div>
       </form>
     </div>
-      <div className='historyBar bg-darkGreyOpaque p-3 m-3'>
-        <HistoryBar blogContent={blogContent} singleBlog={singleBlog}/>
-      </div>
     </div>
   );
 }
