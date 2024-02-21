@@ -1,6 +1,17 @@
+import { useState } from "react";
+import { Sidebar, Menu, MenuItem,  } from 'react-pro-sidebar';
+import '../../App.css';
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
+import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import ArticleTwoToneIcon from '@mui/icons-material/ArticleTwoTone';
+import Tooltip from '@mui/material/Tooltip';
 
-
-export default function SingleBlog({ blog, singleBlog }) {
+export default function SingleBlog({ blog, singleBlog, collapseSidebar }) {
     
     async function fetchOneBlog(id) {
         const requestOptions = {
@@ -20,7 +31,11 @@ export default function SingleBlog({ blog, singleBlog }) {
 
     return (
         <div key={blog.id}>
-            <button className="titleButton text-onBackground" onClick={() => fetchOneBlog(blog.id)}>{blog.title}</button>
-        </div> 
+            <Tooltip title={blog.title} leaveDelay={50} leaveTouchDelay={200} placement="bottom-start" disableInteractive>
+            <button onClick={() => fetchOneBlog(blog.id)}>
+        <MenuItem className='menuItem' icon={<ArticleTwoToneIcon className="icon"/>}  style={{ backgroundColor: '#121212' }}><p className="text-slateLight text-sm p-1 m-1">{blog.title}</p> </MenuItem>
+        </button>
+        </Tooltip>
+        </div>
     )
 }

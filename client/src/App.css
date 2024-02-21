@@ -9,3 +9,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
 }
+
+.icon {
+  color: #BB86FC;
+}
+
+/* .menuItem {
+  background-color: ;
+} */
+
+/* .menuItem:hover {
+  background-color:  #BB86FC;
+} */
+
+

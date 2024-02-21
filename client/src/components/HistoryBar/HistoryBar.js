@@ -2,10 +2,13 @@
 import './historybar.css'
 import { useState, useEffect } from 'react'
 import SingleBlog from './SingleBlog'
+import { Sidebar, Menu, MenuItem,  } from 'react-pro-sidebar';
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
 
 export default function HistoryBar({ blogContent, singleBlog }) {
     const [blogHistory, setBlogHistory] = useState([])
+    const [collapseSidebar, setCollapseSidebar] = useState(false);
 
     useEffect(() => {
         async function getBlogs() {
@@ -24,10 +27,25 @@ export default function HistoryBar({ blogContent, singleBlog }) {
 
     return (
         <>
-            <h1 className='text-onBackground'>Blog History</h1>
-            {blogHistory.map((blog) => (
-                <SingleBlog key={blog.id} blog={blog} singleBlog={singleBlog}/>
-            ))}
+            <Sidebar collapsed={collapseSidebar} backgroundColor='darkGreyOpaque' transitionDuration={500} breakPoint='sm'>
+                <Menu>
+                    <MenuItem className='menuItem'
+                        icon={<MenuOutlinedIcon className='icon' />}
+                            onClick={() => setCollapseSidebar(!collapseSidebar)}
+                                style={{ textAlign: 'center', backgroundColor: '#121212' }}>
+                            {" "} 
+                        <h1 className='text-slateLight'>Blog History</h1>
+                    </MenuItem>
+                    {blogHistory.map((blog) => (
+                        <SingleBlog
+                            key={blog.id}
+                            blog={blog}
+                            singleBlog={singleBlog}
+                            collapseSidebar={collapseSidebar}
+                        />
+                    ))}
+                </Menu>
+            </Sidebar>
         </>
     )
 }
