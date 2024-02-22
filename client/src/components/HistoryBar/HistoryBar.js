@@ -2,11 +2,12 @@
 import './historybar.css'
 import { useState, useEffect } from 'react'
 import SingleBlog from './SingleBlog'
-import { Sidebar, Menu, MenuItem,  } from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 
-export default function HistoryBar({ blogContent, singleBlog }) {
+export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
     const [blogHistory, setBlogHistory] = useState([])
     const [collapseSidebar, setCollapseSidebar] = useState(false);
 
@@ -27,14 +28,21 @@ export default function HistoryBar({ blogContent, singleBlog }) {
 
     return (
         <>
-            <Sidebar collapsed={collapseSidebar} backgroundColor='darkGreyOpaque' transitionDuration={500} breakPoint='sm'>
+            <Sidebar className="sideBar" collapsed={collapseSidebar} backgroundColor='darkGreyOpaque' transitionDuration={500} breakPoint='sm' width='300px'>
                 <Menu>
                     <MenuItem className='menuItem'
-                        icon={<MenuOutlinedIcon className='icon' />}
+                        icon={<MenuOutlinedIcon className='icon hover:scale-125 ' />}
                             onClick={() => setCollapseSidebar(!collapseSidebar)}
                                 style={{ textAlign: 'center', backgroundColor: '#121212' }}>
                             {" "} 
-                        <h1 className='text-slateLight'>Blog History</h1>
+                        <h1 className='text-slateLight rounded-lg hover:bg-darkGreyOpaque p-1 focus:scale-90 hover:rounded-lg'>Blog History</h1>
+                    </MenuItem>
+                    <MenuItem className='menuItem'
+                        icon={<OpenInNewIcon className='icon hover:scale-125' />}
+                        onClick={newBlog}
+                                style={{ textAlign: 'center', backgroundColor: '#121212' }}>
+                        {" "}
+                        <h1 className='text-slateLight rounded-lg hover:bg-darkGreyOpaque p-1 focus:scale-90 hover:rounded-lg'>New Blog</h1>
                     </MenuItem>
                     {blogHistory.map((blog) => (
                         <SingleBlog

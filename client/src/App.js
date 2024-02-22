@@ -7,6 +7,7 @@ function App() {
     const [blogTitle, setBlogTitle] = useState('')
     const [blogContent, setBlogContent] = useState('')
     const [clientPrompt, setClientPrompt] = useState('');
+    const [blogGenerated, setBlogGenerated] = useState('');
 
     const handleChange = (e) => {
       setClientPrompt(e.target.value)
@@ -30,25 +31,78 @@ function App() {
       }
     }
 
-    const singleBlog = (newBlogTitle, newBlogContent) => {
+    const singleBlog = (newBlogTitle, newBlogContent, newBlogGenerated) => {
       setBlogTitle(newBlogTitle);
       setBlogContent(newBlogContent);
+      setBlogGenerated(newBlogGenerated);
     };
+
+    const newBlog = () => {
+      setBlogTitle('');
+      setBlogContent('');
+      setBlogGenerated('');
+    }
 
   return (
     <div className='flex h-dvh'>
-      <HistoryBar blogContent={blogContent} singleBlog={singleBlog}/>
+      <HistoryBar 
+        blogContent={blogContent}
+        singleBlog={singleBlog}
+        newBlog={newBlog}
+      />
     <div className="App container p-4">
-      <h2 className='text-onBackground'>{blogTitle}</h2>
+      <h2 className='text-onBackground'>
+        {blogTitle}
+      </h2>
       {blogContent.split('\n\n').map((paragraph, index) => (
-        <p className='text-onBackground' key={index}>{paragraph}</p>
+          <p className='text-onBackground' key={index}>{paragraph}</p>
       ))}
-      <form className='my-4 flex w-4/5 mx-auto justify-evenly bg-darkGreyOpaque p-3 hover:transition-opacity rounded-lg shadow-xl' onSubmit={fetchBlog}>
+      <p className='text-onBackground'>{blogGenerated ? blogGenerated : null}</p>
+      <form className='my-4
+        flex 
+          w-4/5 
+            mx-auto 
+              justify-evenly
+              bg-darkGreyOpaque 
+              p-3 
+            hover:transition-opacity 
+          rounded-lg 
+        shadow-xl' 
+        onSubmit={fetchBlog}>
         <div className="w-3/5">
-          <input type="text" name="clientPrompt" onChange={handleChange} className="p-2  text-md rounded-lg w-full border border-slateDark bg-darkGrey shadow-sm focus:ring-primaryPurple focus:border-slateLight text-slateDark hover:border-primaryPurple focus:text-slateLight" placeholder="Enter your prompt..."></input>
+          <input type="text"
+            name="clientPrompt" 
+            onChange={handleChange} 
+            className="p-2  
+                text-md 
+                rounded-lg 
+                w-full 
+                border 
+                border-slateDark 
+                bg-darkGrey 
+                shadow-sm 
+                focus:ring-primaryPurple 
+                focus:border-slateLight 
+                text-slateDark 
+                hover:border-primaryPurple 
+                focus:text-slateLight" 
+            placeholder="Enter your prompt...">
+          </input>
         </div>
         <div className="">
-          <button type="submit" className='shadow-md p-2 rounded-lg bg-darkGrey text-slateDark border border-slateDark focus:border-primaryPurple hover:border-primaryPurple hover:text-slateLight'>Generate!</button>
+          <button type="submit" 
+            className='shadow-md 
+              p-2 
+              rounded-lg 
+              bg-darkGrey 
+              text-slateDark 
+              border 
+              border-slateDark 
+              focus:border-primaryPurple 
+              hover:border-primaryPurple
+              hover:text-primaryPurple'>
+                Generate!
+          </button>
         </div>
       </form>
     </div>
