@@ -58,7 +58,7 @@ function App() {
           <p className='text-onBackground' key={index}>{paragraph}</p>
       ))}
       <p className='text-onBackground'>{blogGenerated ? blogGenerated : null}</p>
-      <form className='my-4
+      <form id="inputForm" className='my-4
         flex 
           w-4/5 
             mx-auto 
