@@ -1,12 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import './historybar.css'
 import { useState, useEffect } from 'react'
-import SingleBlog from './SingleBlog'
-import { Sidebar, Menu, MenuItem,  } from 'react-pro-sidebar';
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import { Sidebar } from 'react-pro-sidebar';
+import IconMenu from './IconMenu';
 
 
-export default function HistoryBar({ blogContent, singleBlog }) {
+export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
     const [blogHistory, setBlogHistory] = useState([])
     const [collapseSidebar, setCollapseSidebar] = useState(false);
 
@@ -27,24 +26,8 @@ export default function HistoryBar({ blogContent, singleBlog }) {
 
     return (
         <>
-            <Sidebar collapsed={collapseSidebar} backgroundColor='darkGreyOpaque' transitionDuration={500} breakPoint='sm'>
-                <Menu>
-                    <MenuItem className='menuItem'
-                        icon={<MenuOutlinedIcon className='icon' />}
-                            onClick={() => setCollapseSidebar(!collapseSidebar)}
-                                style={{ textAlign: 'center', backgroundColor: '#121212' }}>
-                            {" "} 
-                        <h1 className='text-slateLight'>Blog History</h1>
-                    </MenuItem>
-                    {blogHistory.map((blog) => (
-                        <SingleBlog
-                            key={blog.id}
-                            blog={blog}
-                            singleBlog={singleBlog}
-                            collapseSidebar={collapseSidebar}
-                        />
-                    ))}
-                </Menu>
+            <Sidebar className="sideBar" collapsed={collapseSidebar} backgroundColor='darkGreyOpaque' transitionDuration={500} breakPoint='sm' width='300px'>
+                <IconMenu collapseSidebar={collapseSidebar} setCollapseSidebar={setCollapseSidebar} newBlog={newBlog} blogHistory={blogHistory} singleBlog={singleBlog} />
             </Sidebar>
         </>
     )

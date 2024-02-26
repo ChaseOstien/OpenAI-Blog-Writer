@@ -3,7 +3,10 @@ module.exports = {
   content: [
     './src/App.js',
     './src/components/HistoryBar/HistoryBar.js',
-    './src/components/HistoryBar/SingleBlog.js'
+    './src/components/HistoryBar/SingleBlog.js',
+    './src/components/SearchBar/SearchBar.js',
+    './src/components/Content/Content.js',
+    './src/components/HistoryBar/IconMenu.js'
   ],
   theme: {
     screens: {
