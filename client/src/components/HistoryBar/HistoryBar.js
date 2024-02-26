@@ -1,10 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import './historybar.css'
 import { useState, useEffect } from 'react'
-import SingleBlog from './SingleBlog'
-import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { Sidebar } from 'react-pro-sidebar';
 import IconMenu from './IconMenu';
 
 

@@ -11,7 +11,8 @@ export default function SearchBar({ fetchBlog, handleChange }) {
               justify-evenly
               bg-darkGreyOpaque 
               p-3 
-            hover:transition-opacity 
+              opacity-50
+            hover:opacity-100
           rounded-lg 
         shadow-xl' 
         onSubmit={fetchBlog}>
@@ -45,8 +46,9 @@ export default function SearchBar({ fetchBlog, handleChange }) {
               border 
               border-slateDark 
               focus:border-primaryPurple 
-              hover:border-primaryPurple
-              hover:text-primaryPurple'>
+              hover:border-darkPrimary
+              hover:text-darkPrimary
+              hover:bg-primaryPurple'>
                 Generate
           </button>
         </div>

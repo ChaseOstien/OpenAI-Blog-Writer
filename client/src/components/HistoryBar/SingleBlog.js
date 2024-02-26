@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Sidebar, Menu, MenuItem,  } from 'react-pro-sidebar';
+import { MenuItem,  } from 'react-pro-sidebar';
 import '../../App.css';
 import ArticleTwoToneIcon from '@mui/icons-material/ArticleTwoTone';
 import Tooltip from '@mui/material/Tooltip';
@@ -25,7 +24,7 @@ export default function SingleBlog({ blog, singleBlog, collapseSidebar }) {
     return (
         <div key={blog.id}>
             <Tooltip title={blog.title}
-            enterDelay={700}
+            enterDelay={500}
             leaveDelay={50}
             leaveTouchDelay={200} 
             placement="bottom-start" 
@@ -33,7 +32,7 @@ export default function SingleBlog({ blog, singleBlog, collapseSidebar }) {
                 <button onClick={() => fetchOneBlog(blog.id)}>
                     <MenuItem className='menuItem' 
                     icon={<ArticleTwoToneIcon className="icon hover:scale-125"/>}  
-                    style={{ backgroundColor: '#121212', maxWidth: '320px' }}>
+                    style={{ backgroundColor: '#030712', maxWidth: '320px' }}>
                         <p className="text-slateLight truncate text-ellipsis text-sm p-1 m-1  
                         hover:bg-darkGreyOpaque 
                         rounded-lg">
