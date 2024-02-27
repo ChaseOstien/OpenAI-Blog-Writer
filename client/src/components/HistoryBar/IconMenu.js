@@ -2,6 +2,7 @@ import { Menu, MenuItem } from 'react-pro-sidebar';
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import SingleBlog from './SingleBlog';
+import '../../App.css';
 
 export default function IconMenu({ collapseSidebar, setCollapseSidebar, newBlog, blogHistory, singleBlog }) {
 

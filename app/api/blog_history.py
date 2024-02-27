@@ -10,7 +10,7 @@ class Query_blogs(Resource):
     def get(self):
         with get_db() as db:
             try:
-                all_blogs = db.query(Blog).order_by(Blog.created_at.asc()).all()
+                all_blogs = db.query(Blog).order_by(Blog.created_at.desc()).all()
             except:
                 db.rollback()
                 return jsonify(message = 'Blog history failed to load!'), 500
