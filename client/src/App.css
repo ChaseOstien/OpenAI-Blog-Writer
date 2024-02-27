@@ -28,6 +28,16 @@ body {
   height: 100vh;
 }
 
+/* .sideBar::-webkit-scrollbar {
+  background-color: #030712 !important;
+  width: 10px;
+} */
+
+/* .sideBar::-webkit-scrollbar-thumb {
+  background-color: #BB86FC !important;
+  border-radius: 20px;
+} */
+
 #inputForm {
   width: 80%;
 }
@@ -49,7 +59,7 @@ body {
 
 #content::-webkit-scrollbar {
   background-color: #030712;
-  width: 10px;
+  width: 8px;
 }
 
 #content::-webkit-scrollbar-thumb {
@@ -64,3 +74,18 @@ body {
 /* #skeleton {
   margin: auto;
 } */
+
+.ps-sidebar-container.css-bavqj4::-webkit-scrollbar-thumb {
+  background-color: #BB86FC;
+  border-radius: 20px;
+  display: none;
+}
+
+.ps-sidebar-container.css-bavqj4::-webkit-scrollbar {
+  background-color: #030712;
+  width: 8px;
+}
+
+.ps-sidebar-container.css-bavqj4::-webkit-scrollbar-thumb:hover {
+  display: block;
+}

@@ -63,7 +63,10 @@ function App() {
       { isLoading ? 
       <div id="contentContainer" className="App mx-auto p-4">
         <SkeletonTheme id="skeleton" className="w-4/5 justify-center" baseColor='#030712' highlightColor='rgba(35, 35, 35, 0.50)'>
-          <Skeleton className='h-full p-4' width={'100%'} borderRadius={'20px'}/>
+          <div className='h-full p-4'>
+            <Skeleton height={'85%'} width={'100%'} borderRadius={'20px'}/>
+            <Skeleton className='mt-4' height={'10%'} width={'100%'} borderRadius={'20px'} />
+          </div>
           </SkeletonTheme> 
       </div>
           : 

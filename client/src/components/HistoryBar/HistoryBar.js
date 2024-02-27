@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import './historybar.css'
+import '../../App.css';
 import { useState, useEffect } from 'react'
 import { Sidebar } from 'react-pro-sidebar';
 import IconMenu from './IconMenu';
@@ -26,7 +26,7 @@ export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
 
     return (
         <>
-            <Sidebar className="sideBar" collapsed={collapseSidebar} backgroundColor='darkGreyOpaque' transitionDuration={500} breakPoint='sm' width='300px'>
+            <Sidebar id="iconMenu" className="sideBar" collapsed={collapseSidebar} backgroundColor='darkGreyOpaque' transitionDuration={500} breakPoint='sm' width='300px'>
                 <IconMenu collapseSidebar={collapseSidebar} setCollapseSidebar={setCollapseSidebar} newBlog={newBlog} blogHistory={blogHistory} singleBlog={singleBlog} />
             </Sidebar>
         </>
