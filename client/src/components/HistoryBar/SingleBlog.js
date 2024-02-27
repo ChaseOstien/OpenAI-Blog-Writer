@@ -35,7 +35,8 @@ export default function SingleBlog({ blog, singleBlog, collapseSidebar }) {
                     style={{ backgroundColor: '#030712', maxWidth: '320px' }}>
                         <p className="text-slateLight truncate text-ellipsis text-sm p-1 m-1  
                         hover:bg-darkGreyOpaque 
-                        rounded-lg">
+                        rounded-lg
+                        font-robotoRegular">
                             {blog.title}
                         </p>
                     </MenuItem>
