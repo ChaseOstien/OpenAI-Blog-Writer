@@ -8,18 +8,22 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     username = Column(String(50), nullable=False)
     email = Column(String(50), nullable=False, unique=True)
-    password = Column(String(100), nullable=False)
+    password = Column(String(1000), nullable=False)
 
     def set_password(self, password):
-        if not password:
-            raise AssertionError('No password provided!')
-        
-        if len(password) < 8 or len(password) > 20:
-            raise AssertionError('Password must be between 8 and 20 characters!')
-        
-        self.password = generate_password_hash(password, 16)
+        return generate_password_hash(password, salt_length=16, method='pbkdf2:sha256:600000')
 
-    def check_pasword(self, password):
+    # def set_password(self, password):
+    #     if isinstance(password, str):
+    #         return generate_password_hash(password, 16)
+    #     else:
+    #         try:
+    #             return generate_password_hash(str(password), 16)
+    #         except Exception as e:
+    #             print(f"Error generating password hash: {e}")
+    #             return None
+
+    def check_password(self, password):
         return check_password_hash(self.password, password)
     
     @validates('username')

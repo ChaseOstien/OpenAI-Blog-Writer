@@ -14,7 +14,7 @@ client = OpenAI()
 def create_app(test_config=None):
     app = Flask(__name__, static_url_path='/')
     app.url_map.strict_slashes = False
-    app.config['JWT_SECRET_KEY']
+    app.config['JWT_SECRET_KEY'] = 'JWT_SECRET_KEY'
     app.config['JWT_TOKEN_LOCATION'] = ['headers', 'cookies']
     app.config['JWT_COOKIE_SECURE'] = False
     jwt = JWTManager(app)

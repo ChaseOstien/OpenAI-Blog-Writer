@@ -1,5 +1,6 @@
 from flask_restful import Resource, Api, reqparse
 from flask import Blueprint, jsonify
+from flask_jwt_extended import jwt_required
 from openai import OpenAI
 from dotenv import load_dotenv
 from app.db import get_db
@@ -12,6 +13,7 @@ load_dotenv()
 client = OpenAI()
 
 class Generate_blog(Resource):
+    @jwt_required()
     def post(self):
 
         parser = reqparse.RequestParser()

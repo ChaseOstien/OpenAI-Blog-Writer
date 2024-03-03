@@ -1,5 +1,7 @@
 from flask_restful import Resource, Api
 from flask import Blueprint, jsonify
+from flask_jwt_extended import jwt_required
+
 from app.db import get_db
 from app.models import Blog
 
@@ -7,6 +9,7 @@ query_blogs = Blueprint('history', __name__)
 api = Api(query_blogs)
 
 class Query_blogs(Resource):
+    @jwt_required()
     def get(self):
         with get_db() as db:
             try:
@@ -26,7 +29,8 @@ class Query_blogs(Resource):
                     blog_data.append(blog_history)
 
                 return jsonify(blog_data)
-            
+    
+    @jwt_required()
     def put(self, id):
         with get_db() as db:
             try:
