@@ -1,6 +1,7 @@
 from openai import OpenAI
 from flask import Flask
 from flask_restful import Resource, Api
+from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
 import openai
 from app.api import generate_blog, query_blogs, auth
@@ -18,6 +19,7 @@ def create_app(test_config=None):
     app.config['JWT_TOKEN_LOCATION'] = ['headers', 'cookies']
     app.config['JWT_COOKIE_SECURE'] = False
     jwt = JWTManager(app)
+    bcrypt = Bcrypt(app)
 
     api = Api(app)
 

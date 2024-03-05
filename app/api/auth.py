@@ -5,6 +5,7 @@ from app.db import get_db
 from app.models import User
 
 from flask_jwt_extended import create_access_token, get_jwt_identity, set_access_cookies, unset_jwt_cookies
+from flask_bcrypt import Bcrypt
 import sys
 from sqlalchemy.exc import SQLAlchemyError
 from werkzeug.security import generate_password_hash
@@ -20,9 +21,9 @@ class Login(Resource):
         parser.add_argument('password')
         args = parser.parse_args(strict=True)
         username = args.username
-        password = args.password
-        print(username)
-        print(password)
+        password = str(args.password)
+
+        bcrypt = Bcrypt()
 
         with get_db() as db:
             try:
@@ -48,25 +49,22 @@ class Signup(Resource):
             parser.add_argument('password')
             parser.add_argument('email')
             args = parser.parse_args(strict=True)
-            print(args)
+
             username = args.username
-            password = str(args.password)
+            password = args.password
             email = args.email
-            print(username, password, email)
-            print(type(password))
+
+            bcrypt = Bcrypt()
+            hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
             db = get_db()
 
-            print('Hello')
             try:
                 newUser = User(
                     username = username, 
                     email = email,
-                    password = password
+                    password = hashed_password
                 )
-                print(newUser)
-
-                newUser.set_password(password)
 
                 db.add(newUser)
                 db.commit()
@@ -83,12 +81,13 @@ class Signup(Resource):
             print(f"Error: {e}")
             return jsonify(message = 'An unexpected error occured!')
 
+
 class Logout(Resource):
     def post(self):
-
         response = jsonify({ 'msg': 'logout successful!' })
         unset_jwt_cookies(response)
         return response
+
 
 api.add_resource(Login, '/login')
 api.add_resource(Signup, '/signup')

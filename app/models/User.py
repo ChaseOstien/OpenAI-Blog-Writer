@@ -1,30 +1,22 @@
 from db import Base
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import validates
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask_bcrypt import Bcrypt
 
 class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     username = Column(String(50), nullable=False)
     email = Column(String(50), nullable=False, unique=True)
-    password = Column(String(1000), nullable=False)
+    password = Column(String(100), nullable=False)
 
     def set_password(self, password):
-        return generate_password_hash(password, salt_length=16, method='pbkdf2:sha256:600000')
-
-    # def set_password(self, password):
-    #     if isinstance(password, str):
-    #         return generate_password_hash(password, 16)
-    #     else:
-    #         try:
-    #             return generate_password_hash(str(password), 16)
-    #         except Exception as e:
-    #             print(f"Error generating password hash: {e}")
-    #             return None
+        return Bcrypt.generate_password_hash(password, 16).decode('utf-8')
 
     def check_password(self, password):
-        return check_password_hash(self.password, password)
+        bcrypt = Bcrypt()
+
+        return bcrypt.check_password_hash(self.password, password)
     
     @validates('username')
     def validate_username(self, key, username):
