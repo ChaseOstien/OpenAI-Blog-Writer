@@ -1,7 +1,7 @@
 from db import Base
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import validates
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask_bcrypt import Bcrypt
 
 class User(Base):
     __tablename__ = 'users'
@@ -11,16 +11,12 @@ class User(Base):
     password = Column(String(100), nullable=False)
 
     def set_password(self, password):
-        if not password:
-            raise AssertionError('No password provided!')
-        
-        if len(password) < 8 or len(password) > 20:
-            raise AssertionError('Password must be between 8 and 20 characters!')
-        
-        self.password = generate_password_hash(password, 16)
+        return Bcrypt.generate_password_hash(password, 16).decode('utf-8')
 
-    def check_pasword(self, password):
-        return check_password_hash(self.password, password)
+    def check_password(self, password):
+        bcrypt = Bcrypt()
+
+        return bcrypt.check_password_hash(self.password, password)
     
     @validates('username')
     def validate_username(self, key, username):
