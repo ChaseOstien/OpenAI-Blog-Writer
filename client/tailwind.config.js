@@ -6,7 +6,10 @@ module.exports = {
     './src/components/HistoryBar/SingleBlog.js',
     './src/components/SearchBar/SearchBar.js',
     './src/components/Content/Content.js',
-    './src/components/HistoryBar/IconMenu.js'
+    './src/components/HistoryBar/IconMenu.js',
+    './src/pages/Home.js',
+    './src/pages/Login.js',
+    './src/pages/Signup.js'
   ],
   theme: {
     screens: {
