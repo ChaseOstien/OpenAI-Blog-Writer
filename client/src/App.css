@@ -10,6 +10,10 @@ body {
   height: 100%;
 }
 
+.container {
+  background-color: #030712;
+}
+
 .icon {
   color: #BB86FC;
 }
