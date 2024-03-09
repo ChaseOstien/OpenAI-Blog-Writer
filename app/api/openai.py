@@ -13,7 +13,7 @@ load_dotenv()
 client = OpenAI()
 
 class Generate_blog(Resource):
-    @jwt_required()
+    @jwt_required(optional=True)
     def post(self):
 
         parser = reqparse.RequestParser()

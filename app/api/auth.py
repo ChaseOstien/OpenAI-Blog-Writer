@@ -8,6 +8,7 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, set_access
 from flask_bcrypt import Bcrypt
 import sys
 from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
 from werkzeug.security import generate_password_hash
 
 auth = Blueprint('auth', __name__, url_prefix='/auth')
@@ -15,36 +16,44 @@ api = Api(auth)
 
 class Login(Resource):
     def post(self):
-        
-        parser = reqparse.RequestParser()
-        parser.add_argument('username')
-        parser.add_argument('password')
-        args = parser.parse_args(strict=True)
-        username = args.username
-        password = str(args.password)
+        try:
+            parser = reqparse.RequestParser(bundle_errors=True)
+            parser.add_argument('username')
+            parser.add_argument('password')
+            args = parser.parse_args(strict=True)
+            username = args.username
+            password = args.password
+            print(username, password)
 
-        bcrypt = Bcrypt()
+            bcrypt = Bcrypt()
 
-        with get_db() as db:
+            db = get_db()
             try:
+                # Attempt to retrieve the user from the database
                 user = db.query(User).filter(User.username == username).one()
-                print(user)
-            except:
-                db.rollback()
-                return jsonify(message = 'No user found with that information!')
-            else:
-                if user.check_password(password) == False:
-                    return jsonify(message = 'Incorrect information!')
-                
-                response = jsonify({'msg': 'Login successful!'})
-                access_token = create_access_token(identity=username)
-                set_access_cookies(response, access_token)
-                return response
+
+                # Check if the provided password matches the stored hash
+                if bcrypt.check_password_hash(user.password, password):
+                    response = jsonify({'msg': 'Login successful!'})
+                    access_token = create_access_token(identity=username)
+                    set_access_cookies(response, access_token)
+                    return response
+                else:
+                    return jsonify(message='Incorrect password!')
+            except NoResultFound:
+                # No user found with the provided username
+                return jsonify(message='No user found with that username!')
+            except MultipleResultsFound:
+                # Multiple users found with the same username (shouldn't happen)
+                return jsonify(message='Multiple users found with that username!')
+        except Exception as e:
+            print(f"Error: {e}")
+            return jsonify(message='An unexpected error occurred!')
 
 class Signup(Resource):
     def post(self):
         try:
-            parser = reqparse.RequestParser()
+            parser = reqparse.RequestParser(bundle_errors=True)
             parser.add_argument('username')
             parser.add_argument('password')
             parser.add_argument('email')
