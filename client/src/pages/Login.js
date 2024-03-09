@@ -22,7 +22,8 @@ export default function LoginPage() {
     try {
       const response = await fetch('http://127.0.0.1:5000/auth/login', requestOptions)
       const data = await response.json();
-      if (data) {
+      // const auth = document.cookie.split('; ').find(cookie => cookie.startsWith('csrf_access_token='))
+      if (data[1]) {
         navigate('/')
       }
     } catch (error) {

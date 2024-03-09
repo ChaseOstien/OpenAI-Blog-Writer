@@ -24,7 +24,7 @@ export default function SignupPage() {
     try {
       const response = await fetch('http://127.0.0.1:5000/auth/signup', requestOptions)
       const data = await response.json();
-      if (data) {
+      if (data[1]) {
         navigate('/')
       }
     } catch(error) {
