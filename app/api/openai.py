@@ -1,10 +1,11 @@
 from flask_restful import Resource, Api, reqparse
 from flask import Blueprint, jsonify
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, current_user
+from extensions import jwt
 from openai import OpenAI
 from dotenv import load_dotenv
 from app.db import get_db
-from app.models import Blog
+from app.models import Blog, User
 
 generate_blog = Blueprint('api', __name__)
 api = Api(generate_blog)
@@ -12,8 +13,20 @@ api = Api(generate_blog)
 load_dotenv()
 client = OpenAI()
 
+@jwt.user_identity_loader
+def user_identity_lookup(user):
+    return user.id
+
+@jwt.user_lookup_loader
+def user_lookup_callback(_jwt_header, jwt_data):
+    db = get_db()
+    identity = jwt_data["sub"]
+    user = db.query(User).filter_by(id=identity).one_or_none()
+    print(user)
+    return user
+
 class Generate_blog(Resource):
-    @jwt_required()
+    @jwt_required(optional=True)
     def post(self):
 
         parser = reqparse.RequestParser()
@@ -45,8 +58,11 @@ class Generate_blog(Resource):
 
         new_blog = Blog(
             title = blog_data['title'],
-            content = blog_data['content']
+            content = blog_data['content'],
+            user_id = current_user.id
         )
+
+        print(new_blog)
 
         with get_db() as db:
             try:

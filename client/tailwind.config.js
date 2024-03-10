@@ -6,7 +6,10 @@ module.exports = {
     './src/components/HistoryBar/SingleBlog.js',
     './src/components/SearchBar/SearchBar.js',
     './src/components/Content/Content.js',
-    './src/components/HistoryBar/IconMenu.js'
+    './src/components/HistoryBar/IconMenu.js',
+    './src/pages/Home.js',
+    './src/pages/Login.js',
+    './src/pages/Signup.js'
   ],
   theme: {
     screens: {
@@ -22,6 +25,11 @@ module.exports = {
       '4': '24px',
       '5': '32px',
       '6': '48px',
+      '7': '56px',
+      '8': '64px',
+      '9': '80px',
+      '10': '96px',
+      '11': '150px'
     },
     colors: {
       'darkPrimary': '#1F1B24',
@@ -38,7 +46,8 @@ module.exports = {
       'onSurface': '#FFFFFF',
       'onError': '#000000',
       'slateDark': '#475569',
-      'slateLight': '#cbd5e1'
+      'slateLight': '#cbd5e1',
+      'mainBackground': '#030712'
     },
     extend: {
       fontFamily: {

@@ -9,7 +9,7 @@ query_blogs = Blueprint('history', __name__)
 api = Api(query_blogs)
 
 class Query_blogs(Resource):
-    @jwt_required()
+    @jwt_required(optional=True)
     def get(self):
         with get_db() as db:
             try:
@@ -30,7 +30,7 @@ class Query_blogs(Resource):
 
                 return jsonify(blog_data)
     
-    @jwt_required()
+    @jwt_required(optional=True)
     def put(self, id):
         with get_db() as db:
             try:
