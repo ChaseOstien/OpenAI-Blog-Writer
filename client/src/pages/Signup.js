@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 
 export default function SignupPage() {
@@ -9,6 +9,8 @@ export default function SignupPage() {
     email: '',
     password: ''
   });
+
+  const [accessToken, setAccessToken] = useOutletContext();
 
   const navigate = useNavigate()
 
@@ -24,7 +26,8 @@ export default function SignupPage() {
     try {
       const response = await fetch('http://127.0.0.1:5000/auth/signup', requestOptions)
       const data = await response.json();
-      if (data[1]) {
+      setAccessToken(data.access_token)
+      if (data.access_token) {
         navigate('/')
       }
     } catch(error) {

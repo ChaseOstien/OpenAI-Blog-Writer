@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 
 export default function LoginPage() {
@@ -7,6 +7,7 @@ export default function LoginPage() {
     username: '',
     password: ''
   });
+  const [accessToken, setAccessToken] = useOutletContext();
 
   const navigate = useNavigate();
 
@@ -22,8 +23,8 @@ export default function LoginPage() {
     try {
       const response = await fetch('http://127.0.0.1:5000/auth/login', requestOptions)
       const data = await response.json();
-      // const auth = document.cookie.split('; ').find(cookie => cookie.startsWith('csrf_access_token='))
-      if (data[1]) {
+      setAccessToken(data.access_token);
+      if (data.access_token) {
         navigate('/')
       }
     } catch (error) {

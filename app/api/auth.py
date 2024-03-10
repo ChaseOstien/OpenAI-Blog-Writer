@@ -3,7 +3,7 @@ from flask import Blueprint, jsonify, request
 
 from app.db import get_db
 from app.models import User
-import app
+from extensions import jwt
 
 from flask_jwt_extended import create_access_token, get_jwt_identity, set_access_cookies, unset_jwt_cookies
 from flask_bcrypt import Bcrypt
@@ -16,7 +16,6 @@ from werkzeug.security import generate_password_hash
 
 auth = Blueprint('auth', __name__, url_prefix='/auth')
 api = Api(auth)
-jwt = JWTManager(app)
 
 @jwt.user_identity_loader
 def user_identity_lookup(user):
@@ -24,9 +23,10 @@ def user_identity_lookup(user):
 
 @jwt.user_lookup_loader
 def user_lookup_callback(_jwt_header, jwt_data):
+    db = get_db()
     identity = jwt_data["sub"]
-    return User.query.filter_by(id=identity).one_or_none()
-
+    user = db.query(User).filter_by(id=identity).one_or_none()
+    return user
 class Login(Resource):
     def post(self):
         try:
@@ -49,7 +49,7 @@ class Login(Resource):
                 # Check if the provided password matches the stored hash
                 if bcrypt.check_password_hash(user.password, password):
                     access_token = create_access_token(identity=user)
-                    response = jsonify({'msg': 'Login successful!'}, {'access_token': access_token}, access_token=access_token, )
+                    response = jsonify(access_token=access_token)
                     set_access_cookies(response, access_token)
                     return response
                 else:

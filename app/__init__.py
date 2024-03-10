@@ -7,7 +7,7 @@ import openai
 from app.api import generate_blog, query_blogs, auth
 from flask_cors import CORS
 from app.db import init_db
-from flask_jwt_extended import JWTManager
+from extensions import jwt
 
 load_dotenv()
 client = OpenAI()
@@ -18,7 +18,7 @@ def create_app(test_config=None):
     app.config['JWT_SECRET_KEY'] = 'JWT_SECRET_KEY'
     app.config['JWT_TOKEN_LOCATION'] = ['headers', 'cookies']
     app.config['JWT_COOKIE_SECURE'] = False
-    jwt = JWTManager(app)
+    jwt.init_app(app)
     bcrypt = Bcrypt(app)
 
     api = Api(app)

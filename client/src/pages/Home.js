@@ -1,5 +1,6 @@
 import '../App.css';
 import { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import HistoryBar from '../components/HistoryBar/HistoryBar';
 import SearchBar from '../components/SearchBar/SearchBar';
 import Content from '../components/Content/Content';
@@ -14,6 +15,8 @@ export default function HomePage() {
     const [blogGenerated, setBlogGenerated] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
+    const [accessToken, setAccessToken] = useOutletContext();
+
     const handleChange = (e) => {
       setClientPrompt(e.target.value)
     }
@@ -23,11 +26,15 @@ export default function HomePage() {
       setIsLoading(true);
         const requestOptions = {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${accessToken}` 
+          },
           body: JSON.stringify({ clientPrompt: clientPrompt })
         };
 
         try {
+          console.log(accessToken)
           const response = await fetch('http://127.0.0.1:5000/generate', requestOptions);
           const data = await response.json();
           setBlogTitle(data.title);
