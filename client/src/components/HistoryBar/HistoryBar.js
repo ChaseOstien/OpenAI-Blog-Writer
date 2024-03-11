@@ -3,16 +3,26 @@ import '../../App.css';
 import { useState, useEffect } from 'react'
 import { Sidebar } from 'react-pro-sidebar';
 import IconMenu from './IconMenu';
+import { useOutletContext } from 'react-router-dom';
 
 
 export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
     const [blogHistory, setBlogHistory] = useState([])
     const [collapseSidebar, setCollapseSidebar] = useState(false);
+    const [accessToken, setAccessToken] = useOutletContext();
 
     useEffect(() => {
         async function getBlogs() {
+
+            const requestOptions = {
+                method: 'GET',
+                headers: {
+                  "Authorization": `Bearer ${accessToken}` 
+                },
+              };
+
             try {
-                const response = await fetch('http://127.0.0.1:5000/history')
+                const response = await fetch('http://127.0.0.1:5000/history', requestOptions)
                 const data = await response.json()
                 console.log(data)
                 setBlogHistory(data)
@@ -21,7 +31,7 @@ export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
             }
         }
         getBlogs();
-    },[blogContent])
+    },[blogContent, accessToken])
 
 
     return (

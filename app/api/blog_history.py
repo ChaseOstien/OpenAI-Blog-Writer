@@ -1,12 +1,25 @@
 from flask_restful import Resource, Api
 from flask import Blueprint, jsonify
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, current_user
+from extensions import jwt
 
 from app.db import get_db
-from app.models import Blog
+from app.models import Blog, User
 
 query_blogs = Blueprint('history', __name__)
 api = Api(query_blogs)
+
+@jwt.user_identity_loader
+def user_identity_lookup(user):
+    return user.id
+
+@jwt.user_lookup_loader
+def user_lookup_callback(_jwt_header, jwt_data):
+    db = get_db()
+    identity = jwt_data["sub"]
+    user = db.query(User).filter_by(id=identity).one_or_none()
+    print(user)
+    return user
 
 class Query_blogs(Resource):
     @jwt_required(optional=True)
