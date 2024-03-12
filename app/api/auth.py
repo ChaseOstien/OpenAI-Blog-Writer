@@ -96,8 +96,8 @@ class Signup(Resource):
                 db.rollback()
                 return jsonify(message = 'Failed to add new user!')
         
-            response = jsonify({ 'msg': 'Sign up successful!' })
-            access_token = create_access_token(identity=username)
+            access_token = create_access_token(identity=newUser)
+            response = jsonify(access_token=access_token)
             set_access_cookies(response, access_token)
             return response
         except Exception as e:
@@ -107,7 +107,8 @@ class Signup(Resource):
 
 class Logout(Resource):
     def post(self):
-        response = jsonify({ 'msg': 'logout successful!' })
+        access_token = ''
+        response = jsonify(access_token = access_token)
         unset_jwt_cookies(response)
         return response
 

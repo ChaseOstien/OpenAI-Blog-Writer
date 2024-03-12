@@ -27,8 +27,8 @@ export default function SignupPage() {
       const response = await fetch('http://127.0.0.1:5000/auth/signup', requestOptions)
       const data = await response.json();
       setAccessToken(data.access_token)
-      if (data.access_token) {
-        navigate('/')
+      if (data.access_token !== '') {
+        navigate('/home')
       }
     } catch(error) {
       console.log('Error signing up!', error);
@@ -84,7 +84,7 @@ export default function SignupPage() {
     
         <p className="mt-3 text-center text-sm text-onBackground">
           Not a first time user?
-          <a href="/login" className="font-semibold leading-6 text-primaryPurple hover:font-bold"> Login instead</a>
+          <a href="/" className="font-semibold leading-6 text-primaryPurple hover:font-bold"> Login instead</a>
         </p>
       </div>
     </div>

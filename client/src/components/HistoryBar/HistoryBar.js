@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Sidebar } from 'react-pro-sidebar';
 import IconMenu from './IconMenu';
 import { useOutletContext } from 'react-router-dom';
+import Logout from '../Logout';
 
 
 export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
@@ -31,13 +32,16 @@ export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
             }
         }
         getBlogs();
-    },[blogContent, accessToken])
+   },[blogContent, accessToken])
 
 
     return (
         <>
             <Sidebar id="iconMenu" className="sideBar" collapsed={collapseSidebar} backgroundColor='darkGreyOpaque' transitionDuration={500} breakPoint='sm' width='300px'>
                 <IconMenu collapseSidebar={collapseSidebar} setCollapseSidebar={setCollapseSidebar} newBlog={newBlog} blogHistory={blogHistory} singleBlog={singleBlog} />
+                <div className="logout">
+                    <Logout />
+                </div>
             </Sidebar>
         </>
     )

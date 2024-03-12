@@ -24,8 +24,8 @@ export default function LoginPage() {
       const response = await fetch('http://127.0.0.1:5000/auth/login', requestOptions)
       const data = await response.json();
       setAccessToken(data.access_token);
-      if (data.access_token) {
-        navigate('/')
+      if (data.access_token !== '') {
+        navigate('/home')
       }
     } catch (error) {
       console.log('Error signing up!', error);
