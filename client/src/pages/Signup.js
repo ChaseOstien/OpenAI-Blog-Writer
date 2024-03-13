@@ -10,7 +10,7 @@ export default function SignupPage() {
     password: ''
   });
 
-  const [accessToken, setAccessToken] = useOutletContext();
+  // const [accessToken, setAccessToken] = useOutletContext();
 
   const navigate = useNavigate()
 
@@ -26,7 +26,8 @@ export default function SignupPage() {
     try {
       const response = await fetch('http://127.0.0.1:5000/auth/signup', requestOptions)
       const data = await response.json();
-      setAccessToken(data.access_token)
+      localStorage.setItem('jwt', data.access_token)
+      // setAccessToken(data.access_token)
       if (data.access_token !== '') {
         navigate('/home')
       }

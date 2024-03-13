@@ -107,8 +107,7 @@ class Signup(Resource):
 
 class Logout(Resource):
     def post(self):
-        access_token = ''
-        response = jsonify(access_token = access_token)
+        response = jsonify({'msg': 'Logged out successfully!'})
         unset_jwt_cookies(response)
         return response
 

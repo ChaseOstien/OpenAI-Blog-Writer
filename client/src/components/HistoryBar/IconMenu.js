@@ -6,7 +6,6 @@ import '../../App.css';
 
 export default function IconMenu({ collapseSidebar, setCollapseSidebar, newBlog, blogHistory, singleBlog }) {
 
-
     return (
         <Menu>
                     <MenuItem className='menuItem'
@@ -23,14 +22,18 @@ export default function IconMenu({ collapseSidebar, setCollapseSidebar, newBlog,
                         {" "}
                         <h1 className='text-slateLight rounded-lg hover:bg-darkGreyOpaque p-1 focus:scale-90 hover:rounded-lg font-robotoRegular'>New Blog</h1>
                     </MenuItem>
-                    {blogHistory.map((blog) => (
-                        <SingleBlog
-                            key={blog.id}
-                            blog={blog}
-                            singleBlog={singleBlog}
-                            collapseSidebar={collapseSidebar}
-                        />
-                    ))}
+                    { Array.isArray(blogHistory) && blogHistory.length > 0 ? (
+                        blogHistory.map((blog) => (
+                            <SingleBlog
+                                key={blog.id}
+                                blog={blog}
+                                singleBlog={singleBlog}
+                                collapseSidebar={collapseSidebar}
+                            />
+                        ))
+                    ) : (
+                        <h2 className='font-bold text-onBackground font-robotoRegular p-2 text-center underline-offset-1'>No saved blogs!</h2>
+                    )}
                 </Menu>
     )
 }

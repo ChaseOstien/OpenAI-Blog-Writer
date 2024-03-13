@@ -15,7 +15,7 @@ export default function HomePage() {
     const [blogGenerated, setBlogGenerated] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    const [accessToken, setAccessToken] = useOutletContext();
+    // const [accessToken, setAccessToken] = useOutletContext();
 
     const handleChange = (e) => {
       setClientPrompt(e.target.value)
@@ -28,20 +28,19 @@ export default function HomePage() {
           method: 'POST',
           headers: { 
             'Content-Type': 'application/json',
-            "Authorization": `Bearer ${accessToken}` 
+            "Authorization": `Bearer ${localStorage.getItem('jwt')}` 
           },
           body: JSON.stringify({ clientPrompt: clientPrompt })
         };
 
         try {
-          console.log(accessToken)
           const response = await fetch('http://127.0.0.1:5000/generate', requestOptions);
           const data = await response.json();
           setBlogTitle(data.title);
           setBlogContent(data.content)
           setClientPrompt('');
           setIsLoading(false);
-        } catch(error) {
+        } catch (error) {
           console.log('Error fetching data', error)
       }
     }

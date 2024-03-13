@@ -10,7 +10,7 @@ import Logout from '../Logout';
 export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
     const [blogHistory, setBlogHistory] = useState([])
     const [collapseSidebar, setCollapseSidebar] = useState(false);
-    const [accessToken, setAccessToken] = useOutletContext();
+    // const [accessToken, setAccessToken] = useOutletContext();
 
     useEffect(() => {
         async function getBlogs() {
@@ -18,7 +18,7 @@ export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
             const requestOptions = {
                 method: 'GET',
                 headers: {
-                  "Authorization": `Bearer ${accessToken}` 
+                  "Authorization": `Bearer ${localStorage.getItem('jwt')}` 
                 },
               };
 
@@ -26,13 +26,15 @@ export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
                 const response = await fetch('http://127.0.0.1:5000/history', requestOptions)
                 const data = await response.json()
                 console.log(data)
-                setBlogHistory(data)
+                if (data[0]) {
+                    setBlogHistory(data)
+                }
             } catch (error) {
                 console.log('Error fetching data', error)
             }
         }
         getBlogs();
-   },[blogContent, accessToken])
+   }, [blogContent])
 
 
     return (
@@ -40,7 +42,7 @@ export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
             <Sidebar id="iconMenu" className="sideBar" collapsed={collapseSidebar} backgroundColor='darkGreyOpaque' transitionDuration={500} breakPoint='sm' width='300px'>
                 <IconMenu collapseSidebar={collapseSidebar} setCollapseSidebar={setCollapseSidebar} newBlog={newBlog} blogHistory={blogHistory} singleBlog={singleBlog} />
                 <div className="logout">
-                    <Logout />
+                    <Logout collapseSidebar={collapseSidebar}/>
                 </div>
             </Sidebar>
         </>
