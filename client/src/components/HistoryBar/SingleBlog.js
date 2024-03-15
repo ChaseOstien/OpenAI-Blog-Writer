@@ -9,6 +9,7 @@ export default function SingleBlog({ blog, singleBlog, collapseSidebar }) {
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
+            "Authorization": `Bearer ${localStorage.getItem('jwt')}`
         };
 
         try {

@@ -11,23 +11,46 @@ export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
 
     useEffect(() => {
         async function getBlogs() {
+
+            const requestOptions = {
+                method: 'GET',
+                headers: {
+                  "Authorization": `Bearer ${localStorage.getItem('jwt')}` 
+                },
+              };
+
             try {
-                const response = await fetch('http://127.0.0.1:5000/history')
+                const response = await fetch('http://127.0.0.1:5000/history', requestOptions)
                 const data = await response.json()
                 console.log(data)
-                setBlogHistory(data)
+                if (data[0]) {
+                    setBlogHistory(data)
+                }
             } catch (error) {
                 console.log('Error fetching data', error)
             }
         }
         getBlogs();
-    },[blogContent])
+   }, [blogContent])
 
 
     return (
         <>
-            <Sidebar id="iconMenu" className="sideBar" collapsed={collapseSidebar} backgroundColor='darkGreyOpaque' transitionDuration={500} breakPoint='sm' width='300px'>
-                <IconMenu collapseSidebar={collapseSidebar} setCollapseSidebar={setCollapseSidebar} newBlog={newBlog} blogHistory={blogHistory} singleBlog={singleBlog} />
+            <Sidebar 
+                id="iconMenu" 
+                className="sideBar" 
+                collapsed={collapseSidebar} 
+                backgroundColor='darkGreyOpaque' 
+                transitionDuration={500} 
+                breakPoint='sm' 
+                width='300px'>
+                <IconMenu 
+                    collapseSidebar={collapseSidebar}
+                    setCollapseSidebar={setCollapseSidebar}
+                    newBlog={newBlog}
+                    blogHistory={blogHistory} 
+                    singleBlog={singleBlog} 
+                />
             </Sidebar>
         </>
     )

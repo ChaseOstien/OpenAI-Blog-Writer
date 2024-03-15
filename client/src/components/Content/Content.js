@@ -42,7 +42,7 @@ export default function Content({ blogContent, blogTitle, blogGenerated }) {
                         Write a blog that covers effective strategies for managing work related stress.
                     </li>
                     <li className='p-1 font-sm font-robotoRegular'>
-                        Write a blog that covers effective strategies for managing work related stress.
+                    Write a blog on the importance of your credit score in determining interest rates.
                     </li>
                     <li className='p-1 font-sm font-robotoRegular'>
                         Write a blog that explains fractions and uses examples to support the content.

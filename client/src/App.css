@@ -18,28 +18,15 @@ body {
   color: #BB86FC;
 }
 
-/* .menuItem {
-  background-color: ;
-} */
-
-/* .menuItem:hover {
-  background-color:  #BB86FC;
-} */
-
-
 .sideBar {
   border-color: #BB86FC !important;
   height: 100vh;
+  position: relative;
+  
 }
 
-/* .sideBar::-webkit-scrollbar {
-  background-color: #030712 !important;
-  width: 10px;
-} */
-
-/* .sideBar::-webkit-scrollbar-thumb {
-  background-color: #BB86FC !important;
-  border-radius: 20px;
+/* .logout {
+  
 } */
 
 #inputForm {
@@ -51,15 +38,6 @@ body {
   width: 80%;
   justify-content: center;
 }
-
-/* #contentContainer.App.flex.mx-auto.p-4 {
-  width: 100%;
-} */
-
-/* #contentContainer:-webkit-scrollbar {
-  width: 5px;
-  background-color: #030712;
-} */
 
 #content::-webkit-scrollbar {
   background-color: #030712;
@@ -75,14 +53,10 @@ body {
   border-bottom: .5px solid #BB86FC;
 }
 
-/* #skeleton {
-  margin: auto;
-} */
-
 .ps-sidebar-container.css-bavqj4::-webkit-scrollbar-thumb {
   background-color: #BB86FC;
   border-radius: 20px;
-  display: none;
+  
 }
 
 .ps-sidebar-container.css-bavqj4::-webkit-scrollbar {
@@ -90,6 +64,34 @@ body {
   width: 8px;
 }
 
-.ps-sidebar-container.css-bavqj4::-webkit-scrollbar-thumb:hover {
+/* .ps-sidebar-container.css-bavqj4::-webkit-scrollbar-thumb:hover {
   display: block;
+} */
+
+/* .scroll {
+  overflow-y: scroll;
+  overflow-x: hidden;
+} */
+
+/* .ps-sidebar-container.css-bavqj4::-webkit-scrollbar {
+  display: none;
+} */
+
+.ps-sidebar-container.css-bavqj4 {
+  overflow-y: scroll;
 }
+
+/* .scroll::-webkit-scrollbar {
+  background-color: #030712;
+  width: 8px;
+  
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: #BB86FC;
+  border-radius: 20px;
+} */
+
+/* .scroll::-webkit-scrollbar-track {
+  
+} */
