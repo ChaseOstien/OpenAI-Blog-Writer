@@ -7,7 +7,7 @@ import './App.css';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup'
-
+// Default page will be login screen, navigates to Home page once logged in or signed up.
 const router = createBrowserRouter([
   {
     path: '/',

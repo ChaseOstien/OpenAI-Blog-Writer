@@ -1,6 +1,5 @@
 import '../App.css';
 import { useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
 import HistoryBar from '../components/HistoryBar/HistoryBar';
 import SearchBar from '../components/SearchBar/SearchBar';
 import Content from '../components/Content/Content';
@@ -15,12 +14,10 @@ export default function HomePage() {
     const [blogGenerated, setBlogGenerated] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    // const [accessToken, setAccessToken] = useOutletContext();
-
     const handleChange = (e) => {
       setClientPrompt(e.target.value)
     }
-
+// Fetch request to generate content. Post requests includes user prompt in body, hits backend api which fires request to OpenAI api. Generated content parsed by backend before being returned to this component. 
     async function fetchBlog(e) {
       e.preventDefault();
       setIsLoading(true);
@@ -44,13 +41,13 @@ export default function HomePage() {
           console.log('Error fetching data', error)
       }
     }
-
+// Function to set displayed content to a blog selected from the history bar.
     const singleBlog = (newBlogTitle, newBlogContent, newBlogGenerated) => {
       setBlogTitle(newBlogTitle);
       setBlogContent(newBlogContent);
       setBlogGenerated(newBlogGenerated);
     };
-
+// Function to clear currently rendered blog and return to landing screen.
     const newBlog = () => {
       setBlogTitle('');
       setBlogContent('');
@@ -65,22 +62,36 @@ export default function HomePage() {
         singleBlog={singleBlog}
         newBlog={newBlog}
       />
-    
       { isLoading ? 
-      <div id="contentContainer" className="App mx-auto p-4">
-        <SkeletonTheme id="skeleton" className="w-4/5 justify-center" baseColor='#030712' highlightColor='rgba(35, 35, 35, 0.50)'>
+      <div id="contentContainer" 
+        className="App mx-auto p-4">
+        <SkeletonTheme id="skeleton" 
+          className="w-4/5 justify-center" 
+          baseColor='#030712' 
+          highlightColor='rgba(35, 35, 35, 0.50)'>
           <div className='h-full p-4'>
-            <Skeleton height={'85%'} width={'100%'} borderRadius={'20px'}/>
-            <Skeleton className='mt-4' height={'10%'} width={'100%'} borderRadius={'20px'} />
+            <Skeleton height={'85%'} 
+              width={'100%'} 
+              borderRadius={'20px'}/>
+            <Skeleton className='mt-4' 
+              height={'10%'} 
+              width={'100%'} 
+              borderRadius={'20px'} />
           </div>
-          </SkeletonTheme> 
+        </SkeletonTheme> 
       </div>
           : 
-          <div id="contentContainer" className="App mx-auto justify-center p-4 w-4/5">
-            <Content blogContent={blogContent} blogGenerated={blogGenerated} blogTitle={blogTitle} /> 
-            <SearchBar handleChange={handleChange} fetchBlog={fetchBlog} /> 
+          <div id="contentContainer" 
+            className="App mx-auto justify-center p-4 w-4/5">
+            <Content blogContent={blogContent} 
+              blogGenerated={blogGenerated} 
+              blogTitle={blogTitle} 
+            /> 
+            <SearchBar handleChange={handleChange} 
+              fetchBlog={fetchBlog} 
+            /> 
           </div>
-          }
+        }
     </div>
   );
 }

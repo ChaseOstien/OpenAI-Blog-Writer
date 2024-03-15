@@ -1,18 +1,14 @@
 from flask_restful import Resource, Api, reqparse
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify
+from flask_jwt_extended import create_access_token, set_access_cookies, unset_jwt_cookies
+from flask_bcrypt import Bcrypt
 
 from app.db import get_db
 from app.models import User
 from extensions import jwt
 
-from flask_jwt_extended import create_access_token, get_jwt_identity, set_access_cookies, unset_jwt_cookies
-from flask_bcrypt import Bcrypt
-from flask_jwt_extended import JWTManager
-
-import sys
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm.exc import NoResultFound, MultipleResultsFound
-from werkzeug.security import generate_password_hash
 
 auth = Blueprint('auth', __name__, url_prefix='/auth')
 api = Api(auth)
@@ -27,6 +23,7 @@ def user_lookup_callback(_jwt_header, jwt_data):
     identity = jwt_data["sub"]
     user = db.query(User).filter_by(id=identity).one_or_none()
     return user
+
 class Login(Resource):
     def post(self):
         try:

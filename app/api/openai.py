@@ -1,11 +1,15 @@
 from flask_restful import Resource, Api, reqparse
 from flask import Blueprint, jsonify
-from flask_jwt_extended import jwt_required, current_user
+from flask_jwt_extended import jwt_required, current_user, create_access_token, get_jwt_identity, set_access_cookies, get_jwt
+
 from extensions import jwt
-from openai import OpenAI
-from dotenv import load_dotenv
 from app.db import get_db
 from app.models import Blog, User
+
+from openai import OpenAI
+from dotenv import load_dotenv
+from datetime import datetime, timedelta, timezone
+
 
 generate_blog = Blueprint('api', __name__)
 api = Api(generate_blog)
@@ -24,6 +28,19 @@ def user_lookup_callback(_jwt_header, jwt_data):
     user = db.query(User).filter_by(id=identity).one_or_none()
     print(user)
     return user
+
+def refresh_expiring_jwts(response):
+    try:
+        exp_timestamp = get_jwt()["exp"]
+        now = datetime.now(timezone.utc)
+        target_timestamp = datetime.timestamp(now + timedelta(minutes=30))
+        if target_timestamp > exp_timestamp:
+            access_token = create_access_token(identity=get_jwt_identity())
+            set_access_cookies(response, access_token)
+        return response
+    except (RuntimeError, KeyError):
+        # Case where there is not a valid JWT. Just return the original response
+        return response
 
 class Generate_blog(Resource):
     @jwt_required(optional=True)
@@ -76,3 +93,4 @@ class Generate_blog(Resource):
         return jsonify(blog_data)
 
 api.add_resource(Generate_blog, '/generate')
+generate_blog.after_request(refresh_expiring_jwts)

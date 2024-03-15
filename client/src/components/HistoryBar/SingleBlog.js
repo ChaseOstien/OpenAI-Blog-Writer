@@ -1,11 +1,9 @@
 import { MenuItem,  } from 'react-pro-sidebar';
-// import { useOutletContext } from 'react-router-dom';
 import '../../App.css';
 import ArticleTwoToneIcon from '@mui/icons-material/ArticleTwoTone';
 import Tooltip from '@mui/material/Tooltip';
 
 export default function SingleBlog({ blog, singleBlog, collapseSidebar }) {
-    // const [accessToken, setAccessToken] = useOutletContext();
     
     async function fetchOneBlog(id) {
         const requestOptions = {

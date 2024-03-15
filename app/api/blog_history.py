@@ -1,10 +1,12 @@
 from flask_restful import Resource, Api
 from flask import Blueprint, jsonify
-from flask_jwt_extended import jwt_required, current_user
-from extensions import jwt
+from flask_jwt_extended import jwt_required, current_user, create_access_token, get_jwt_identity, set_access_cookies, get_jwt
 
+from extensions import jwt
 from app.db import get_db
 from app.models import Blog, User
+
+from datetime import datetime, timedelta, timezone
 
 query_blogs = Blueprint('history', __name__)
 api = Api(query_blogs)
@@ -21,18 +23,30 @@ def user_lookup_callback(_jwt_header, jwt_data):
     print(user)
     return user
 
+
+def refresh_expiring_jwts(response):
+    try:
+        exp_timestamp = get_jwt()["exp"]
+        now = datetime.now(timezone.utc)
+        target_timestamp = datetime.timestamp(now + timedelta(minutes=30))
+        if target_timestamp > exp_timestamp:
+            access_token = create_access_token(identity=get_jwt_identity())
+            set_access_cookies(response, access_token)
+        return response
+    except (RuntimeError, KeyError):
+        # Case where there is not a valid JWT. Just return the original response
+        return response
+
 class Query_blogs(Resource):
     @jwt_required(optional=True)
     def get(self):
         with get_db() as db:
             try:
-                # all_blogs = db.query(Blog).order_by(Blog.created_at.desc()).all()
-                # print(all_blogs)
+                # all_blogs = db.query(Blog).order_by(Blog.created_at.desc()).all() # This line used to test scroll functionality of history bar
                 if current_user.id:
                     all_blogs = db.query(Blog).filter(Blog.user_id == current_user.id).order_by(Blog.created_at.desc()).all()
                 else:
                     all_blogs = db.query(Blog).order_by(Blog.created_at.desc()).all()
-                    print(all_blogs)
             except:
                 db.rollback()
                 return jsonify(message = 'Blog history failed to load!'), 500
@@ -68,3 +82,4 @@ class Query_blogs(Resource):
 
 api.add_resource(Query_blogs, '/history')
 api.add_resource(Query_blogs, '/history/<int:id>', endpoint='get_by_id')
+query_blogs.after_request(refresh_expiring_jwts)
