@@ -9,7 +9,8 @@ export default function SearchBar({ fetchBlog, handleChange }) {
           <div className="w-3/5">
             <input type="text"
               name="clientPrompt" 
-              onChange={handleChange} 
+              onChange={handleChange}
+              required 
               className="p-2  
                 text-md 
                 rounded-lg 
