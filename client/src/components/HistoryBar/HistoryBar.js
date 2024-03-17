@@ -20,7 +20,7 @@ export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
               };
 
             try {
-                const response = await fetch('https://127.0.0.1:5000/history', requestOptions)
+                const response = await fetch('http://127.0.0.1:5000/history', requestOptions)
                 const data = await response.json()
                 console.log(data)
                 if (data[0]) {
