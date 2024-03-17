@@ -31,7 +31,7 @@ export default function HomePage() {
         };
 
         try {
-          const response = await fetch('http://127.0.0.1:5000/generate', requestOptions);
+          const response = await fetch('https://openai-blog-generator-634c4b325b13.herokuapp.com/generate', requestOptions);
           const data = await response.json();
           setBlogTitle(data.title);
           setBlogContent(data.content)

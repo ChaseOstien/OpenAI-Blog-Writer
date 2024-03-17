@@ -13,7 +13,7 @@ export default function SingleBlog({ blog, singleBlog, collapseSidebar }) {
         };
 
         try {
-            const baseUrl = 'http://127.0.0.1:5000/history/';
+            const baseUrl = 'https://openai-blog-generator-634c4b325b13.herokuapp.com/history/';
             const response = await fetch(baseUrl + blog.id, requestOptions)
             const data = await response.json()
             singleBlog(data.title, data.content, blog.generated)
