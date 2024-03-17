@@ -19,7 +19,7 @@ def create_app(test_config=None):
     app.url_map.strict_slashes = False
     app.config['JWT_SECRET_KEY'] = 'JWT_SECRET_KEY'
     app.config['JWT_TOKEN_LOCATION'] = ['headers', 'cookies']
-    app.config['JWT_COOKIE_SECURE'] = False
+    app.config['JWT_COOKIE_SECURE'] = True
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=2)
     jwt.init_app(app)
     bcrypt = Bcrypt(app)
