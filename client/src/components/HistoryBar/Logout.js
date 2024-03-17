@@ -15,7 +15,7 @@ export default function Logout({ collapseSidebar }) {
         }
 
         try {
-            const response = await fetch('http://127.0.0.1:5000/auth/logout', requestOptions)
+            const response = await fetch('https://openai-blog-generator-634c4b325b13.herokuapp.com/auth/logout', requestOptions)
             const data = await response.json();
             localStorage.removeItem('jwt')
             navigate('/')
