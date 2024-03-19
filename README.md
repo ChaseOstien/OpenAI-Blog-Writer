@@ -3,7 +3,7 @@
 ## Description
 This full stack application utilizes the OpenAi API to generate blog content based on user inputted prompts. A user will need to login or signup to access the service. Once enrolled, a user can enter a prompt following the examples on the home screen. After selecting generate, a request will be sent to the applications API. This will trigger a request to the OpenAI API that has been primed with instructions on writing style and how to format the generated content. Once the requested content has been generated, it will be rendered in the client and saved to the data base for future reference. 
 
-This projects backend consists of a Flask application with a Flask-RESTful API. Data for this application is stored in a PyMySQL db. It is queried using SQLAlchemy, encrypted using Flask-Bcrypt and auth is managed using Flask-JWT.
+This projects backend consists of a Flask application with a Flask-RESTful API. Data for this application is stored in a MySQL db. It is queried using SQLAlchemy, encrypted using Flask-Bcrypt and auth is managed using Flask-JWT.
 
 The client is built in React and styled with Tailwind.css. Routing is managed with React-Router and the color theme and icons are provided by Material UI. 
 
