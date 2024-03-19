@@ -9,21 +9,12 @@ The client is built in React and styled with Tailwind.css. Routing is managed wi
 
 ## Table of Contents
 
-- [Installation](#installation)
 - [Technologies Used](#technologies-used)
 - [Application Examples](#application-examples)
 - [Contributors](#contributors)
 - [Deploy](#deploy)
 - [License](#license)
 - [Repository](#repository)
-
-## Installation
-
-```
-npm install
-npm run seed
-npm run develop
-```
 
 ## Technologies Used
 
@@ -47,7 +38,7 @@ npm run develop
 ## Deploy
 
 Deployed Application:
-* Hello
+* https://open-ai-blog-writer.vercel.app/
 
 ## License
 

@@ -6,7 +6,7 @@ from os import getenv
 
 load_dotenv()
 
-engine = create_engine(getenv('DB_URL'), echo=True, pool_size=20, max_overflow=0)
+engine = create_engine(getenv('DB_URL'), echo=True, pool_size=0, max_overflow=0, pool_recycle=3600)
 Session = sessionmaker(bind=engine)
 Base = declarative_base()
 
@@ -22,7 +22,7 @@ def get_db():
         # store db connection in app context
         g.db = Session()
 
-    return Session()
+    return g.db
 
 # This function closes the database connection
 def close_db(e=None):
