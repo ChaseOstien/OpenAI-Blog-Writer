@@ -7,12 +7,13 @@ import './App.css';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup'
+import Error from './pages/Error';
 // Default page will be login screen, navigates to Home page once logged in or signed up.
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <h1>Wrong page!</h1>,
+    errorElement: <Error />,
     children: [
       {
         index: true,
