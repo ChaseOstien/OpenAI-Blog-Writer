@@ -25,10 +25,6 @@ body {
   
 }
 
-/* .logout {
-  
-} */
-
 #inputForm {
   width: 80%;
 }
@@ -64,34 +60,14 @@ body {
   width: 8px;
 }
 
-/* .ps-sidebar-container.css-bavqj4::-webkit-scrollbar-thumb:hover {
-  display: block;
-} */
-
-/* .scroll {
-  overflow-y: scroll;
-  overflow-x: hidden;
-} */
-
-/* .ps-sidebar-container.css-bavqj4::-webkit-scrollbar {
-  display: none;
-} */
-
 .ps-sidebar-container.css-bavqj4 {
   overflow-y: scroll;
 }
 
-/* .scroll::-webkit-scrollbar {
-  background-color: #030712;
-  width: 8px;
-  
+.ps-menu-icon.css-wx7wi4 {
+  margin-right: 0px;
 }
 
-.scroll::-webkit-scrollbar-thumb {
-  background-color: #BB86FC;
-  border-radius: 20px;
-} */
-
-/* .scroll::-webkit-scrollbar-track {
-  
-} */
+.css-1t8x7v1 >.ps-menu-button {
+  justify-content: center;
+}

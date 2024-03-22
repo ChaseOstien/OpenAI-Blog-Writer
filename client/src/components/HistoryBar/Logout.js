@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Tooltip } from '@mui/material';
+import { MenuItem } from "react-pro-sidebar";
 import '../../App.css';
 
 export default function Logout({ collapseSidebar }) {
@@ -33,19 +34,24 @@ export default function Logout({ collapseSidebar }) {
                 leaveTouchDelay={200} 
                 placement="bottom-start" 
                 disableInteractive>
-                    <button 
-                        className="flex w-4/5 justify-center py-1 hover:scale-125 text-primaryPurple" 
-                        onClick={logout}>
-                            <LogoutIcon />
+                    <button onClick={logout}>
+                        <MenuItem className="menuItem" 
+                            icon={ <LogoutIcon 
+                            className="icon hover:scale-125"/>} 
+                            style={{ backgroundColor: '#030712', maxWidth: '320px' }}>
+                        </MenuItem>
                     </button>
                 </Tooltip>
             ) : (
-                <button 
-                    className="flex w-4/5 justify-center rounded-md bg-primaryPurple px-3 py-1 text-md font-semibold leading-6 shadow-sm hover:bg-primaryVariant focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
-                    text-onBackground" 
-                    onClick={logout}>
+                <MenuItem className="menuItem" 
+                    style={{ backgroundColor: '#030712', maxWidth: '320px' }}>
+                    <button 
+                        className="flex w-full justify-center rounded-md bg-primaryPurple py-1 text-md font-semibold leading-6 shadow-sm hover:bg-primaryVariant
+                        text-onBackground" 
+                        onClick={logout}>
                         Logout
-                </button>
+                    </button>
+                </MenuItem>
             )}
         </>
     )

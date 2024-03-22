@@ -16,13 +16,23 @@ export default function IconMenu({ collapseSidebar, setCollapseSidebar, newBlog,
                     leaveTouchDelay={200} 
                     placement="bottom-start" 
                     disableInteractive>
-                        <MenuItem className='menuItem'
-                            icon={<MenuOutlinedIcon className='icon hover:scale-125 ' />}
-                            onClick={() => setCollapseSidebar(!collapseSidebar)}
+                        { collapseSidebar ? (
+                            <MenuItem className='menuItem'
+                                icon={<MenuOutlinedIcon 
+                                className='icon hover:scale-125 ' />}
+                                onClick={() => setCollapseSidebar(!collapseSidebar)}
                                 style={{ textAlign: 'center', backgroundColor: '#030712' }}>
-                            {" "} 
-                            <h1 className='text-slateLight rounded-lg hover:bg-darkGreyOpaque p-1 focus:scale-90 hover:rounded-lg font-robotoRegular'>Blog History</h1>
-                        </MenuItem>
+                            </MenuItem> 
+                        ) : (
+                            <MenuItem className='menuItem'
+                                onClick={() => setCollapseSidebar(!collapseSidebar)}
+                                style={{ textAlign: 'center', backgroundColor: '#030712' }}>
+                                {" "} 
+                                <h1 className='text-slateLight rounded-lg hover:bg-darkGreyOpaque p-1 focus:scale-90 hover:rounded-lg font-robotoRegular'>
+                                    Blog History
+                                </h1>
+                            </MenuItem>
+                        )}
                 </Tooltip>
                 <Tooltip title="New Blog"
                     enterDelay={500}
@@ -30,15 +40,25 @@ export default function IconMenu({ collapseSidebar, setCollapseSidebar, newBlog,
                     leaveTouchDelay={200} 
                     placement="bottom-start" 
                     disableInteractive>
-                        <MenuItem className='menuItem'
-                            icon={<OpenInNewIcon className='icon hover:scale-125' />}
-                            onClick={newBlog}
+                        { collapseSidebar ? ( 
+                            <MenuItem className='menuItem'
+                                icon={<OpenInNewIcon 
+                                className='icon hover:scale-125' />}
+                                onClick={newBlog}
                                 style={{ textAlign: 'center', backgroundColor: '#030712' }}>
-                            {" "}
-                            <h1 className='text-slateLight rounded-lg hover:bg-darkGreyOpaque p-1 focus:scale-90 hover:rounded-lg font-robotoRegular'>New Blog</h1>
-                        </MenuItem>
+                            </MenuItem>
+                        ) : (
+                            <MenuItem className='menuItem'
+                                onClick={newBlog}
+                                style={{ textAlign: 'center', backgroundColor: '#030712' }}>
+                                {" "}
+                                <h1 className='text-slateLight rounded-lg hover:bg-darkGreyOpaque p-1 hover:rounded-lg font-robotoRegular'>
+                                    New Blog
+                                </h1>
+                            </MenuItem>
+                        )}
                 </Tooltip>
-                <div className="flex justify-center ml-1">
+                <div className="flex justify-center">
                     <Logout collapseSidebar={collapseSidebar}/>
                 </div>
                 <div className='scroll'>
@@ -52,7 +72,9 @@ export default function IconMenu({ collapseSidebar, setCollapseSidebar, newBlog,
                             />
                         ))
                     ) : (
-                    <h2 className='font-bold text-onBackground font-robotoRegular p-2 text-center underline-offset-1'>No saved blogs!</h2>
+                    <h2 className='font-bold text-onBackground font-robotoRegular p-2 text-center underline-offset-1'>
+                        No saved blogs!
+                    </h2>
                     )}
                 </div>
         </Menu>
