@@ -14,11 +14,11 @@ export default function SingleBlog({ blog, singleBlog, collapseSidebar }) {
 
         try {
             const baseUrl = 'https://openai-blog-generator-634c4b325b13.herokuapp.com/history/';
-            const response = await fetch(baseUrl + blog.id, requestOptions)
-            const data = await response.json()
-            singleBlog(data.title, data.content, blog.generated)
+            const response = await fetch(baseUrl + blog.id, requestOptions);
+            const data = await response.json();
+            singleBlog(data.title, data.content, blog.generated);
         } catch(error) {
-            console.log('Error fetching data', error)
+            console.log('Error fetching data', error);
         }
     }
 
@@ -38,13 +38,8 @@ export default function SingleBlog({ blog, singleBlog, collapseSidebar }) {
                         </MenuItem>
                     </button>
                 ) : (
-                    <button onClick={() => fetchOneBlog(blog.id)}>
-                        <MenuItem className='menuItem'  
-                            style={{ backgroundColor: '#030712', maxWidth: '320px' }}>
-                            <p className="text-slateLight truncate text-ellipsis text-sm p-1 m-1 hover:bg-darkGreyOpaque rounded-lg font-robotoRegular">
+                    <button className="text-slateLight max-w-72 truncate text-ellipsis text-md p-1 m-1 hover:border hover:border-primaryPurple rounded-lg font-robotoRegular  focus:border focus:border-primaryPurple" onClick={() => fetchOneBlog(blog.id)}>
                             {blog.title}
-                            </p>
-                        </MenuItem>
                     </button>
                 )}
             </Tooltip>

@@ -29,7 +29,8 @@ module.exports = {
       '8': '64px',
       '9': '80px',
       '10': '96px',
-      '11': '150px'
+      '11': '150px',
+      '72': '17rem'
     },
     colors: {
       'darkPrimary': '#1F1B24',
