@@ -8,8 +8,9 @@ export default function SingleBlog({ blog, singleBlog, collapseSidebar }) {
     async function fetchOneBlog(id) {
         const requestOptions = {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
             "Authorization": `Bearer ${localStorage.getItem('jwt')}`
+            },
         };
 
         try {
