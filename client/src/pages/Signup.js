@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import ErrorIcon from '@mui/icons-material/Error';
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -8,6 +8,7 @@ export default function SignupPage() {
     email: '',
     password: ''
   });
+  const [error, setError] = useState('');
 
   const navigate = useNavigate()
 // Signup fetch request, bundles formData and sets return jwt token in local storage.
@@ -23,11 +24,15 @@ export default function SignupPage() {
     try {
       const response = await fetch('https://openai-blog-generator-634c4b325b13.herokuapp.com/auth/signup', requestOptions)
       const data = await response.json();
-      localStorage.setItem('jwt', data.access_token)
-      if (data.access_token !== '') {
-        navigate('/home')
+      if (data.access_token) {
+        localStorage.setItem('jwt', data.access_token);
+        navigate('/home');
+        setError('');
+        return;
       }
-    } catch(error) {
+      throw new Error(data.message);
+    } catch (error) {
+      setError('That information is already in use!')
       console.log('Error signing up!', error);
     }
   }
@@ -100,6 +105,7 @@ export default function SignupPage() {
                   onChange={handleChange} 
                   className="block w-full rounded-lg border-0 py-1 text-primaryPurple bg-mainBackground shadow-sm ring-1 ring-inset ring-primaryPurple pl-2 focus:ring-2 focus:ring-inset focus:ring-primaryVariant sm:text-sm sm:leading-6" 
                 />
+                { error && <span className="error"><ErrorIcon className="m-1"/>{error}</span> }
               </div>
             </div>
             <div>
