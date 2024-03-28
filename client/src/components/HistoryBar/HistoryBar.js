@@ -40,7 +40,7 @@ export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
                 id="iconMenu" 
                 className="sideBar" 
                 collapsed={collapseSidebar} 
-                backgroundColor='darkGreyOpaque' 
+                backgroundColor='secondaryBackground' 
                 transitionDuration={300} 
                 breakPoint='sm' 
                 width='300px'>

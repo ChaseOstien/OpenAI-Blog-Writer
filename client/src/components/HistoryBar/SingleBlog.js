@@ -33,9 +33,9 @@ export default function SingleBlog({ blog, singleBlog, collapseSidebar }) {
             disableInteractive>
                 { collapseSidebar ? (
                     <button onClick={() => fetchOneBlog(blog.id)}>
-                        <MenuItem className='menuItem' 
+                        <MenuItem className='' 
                             icon={<ArticleTwoToneIcon className="icon hover:scale-125"/>}  
-                            style={{ backgroundColor: '#030712', maxWidth: '320px' }}>
+                            style={{ maxWidth: '320px', backgroundColor: 'rgba(0, 0, 0, 0.0)' }}>
                         </MenuItem>
                     </button>
                 ) : (

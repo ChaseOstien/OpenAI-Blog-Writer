@@ -9,11 +9,13 @@ module.exports = {
     './src/components/HistoryBar/IconMenu.js',
     './src/pages/Home.js',
     './src/pages/Login.js',
-    './src/pages/Signup.js'
+    './src/pages/Signup.js',
+    './src/pages/Error.js',
+    './src/components/HistoryBar/Logout.js',
   ],
   theme: {
     screens: {
-      sm: '480px',
+      sm: '450px',
       md: '768px',
       lg: '976px',
       xl: '1440px',
@@ -48,7 +50,8 @@ module.exports = {
       'onError': '#000000',
       'slateDark': '#475569',
       'slateLight': '#cbd5e1',
-      'mainBackground': '#030712'
+      'mainBackground': '#030712',
+      'secondaryBackground': 'rgba(0, 0, 0, 0.5)',
     },
     extend: {
       fontFamily: {

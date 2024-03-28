@@ -56,7 +56,7 @@ export default function HomePage() {
     }
 
   return (
-    <div className='flex'>
+    <div className='flex bg-secondaryBackground'>
       <HistoryBar 
         blogContent={blogContent}
         singleBlog={singleBlog}

@@ -45,13 +45,10 @@ export default function LoginPage() {
 
 
   return (
-    <div className="flex h-screen flex-col justify-center px-5 py-8 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        {/* <img className="mx-auto h-11 w-11" src="/BlogLogo2.png" alt="Your Company" /> */}
+    <div id='secondaryBackground' className="flex h-screen flex-col justify-center px-5 py-8 lg:px-8">
         <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-primaryPurple font-robotoRegular">
           Sign in to Generate Blogs
         </h2>
-      </div>
       <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6 login-form" 
           onSubmit={handleSubmit}>
