@@ -7,7 +7,7 @@ import IconMenu from './IconMenu';
 
 export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
     const [blogHistory, setBlogHistory] = useState([])
-    const [collapseSidebar, setCollapseSidebar] = useState(false);
+    const [collapseSidebar, setCollapseSidebar] = useState(true);
 
     useEffect(() => {
         async function getBlogs() {

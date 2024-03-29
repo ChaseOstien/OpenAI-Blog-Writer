@@ -29,7 +29,7 @@ export default function IconMenu({ collapseSidebar, setCollapseSidebar, newBlog,
                                 style={{ textAlign: 'center', backgroundColor: 'rgba(0, 0, 0, 0.0)' }}>
                                 {" "} 
                                 <h1 className='text-slateLight rounded-lg hover:bg-darkGreyOpaque p-1 focus:scale-90 hover:rounded-lg font-robotoRegular'>
-                                    Blog History
+                                    Toggle Menu
                                 </h1>
                             </MenuItem>
                         )}
