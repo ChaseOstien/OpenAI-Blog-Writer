@@ -35,16 +35,16 @@ export default function Logout({ collapseSidebar }) {
                 placement="bottom-start" 
                 disableInteractive>
                     <button onClick={logout}>
-                        <MenuItem className="menuItem" 
+                        <MenuItem className="" 
                             icon={ <LogoutIcon 
                             className="icon hover:scale-125"/>} 
-                            style={{ backgroundColor: '#030712', maxWidth: '320px' }}>
+                            style={{ maxWidth: '320px', backgroundColor: 'rgba(0, 0, 0, 0.0)' }}>
                         </MenuItem>
                     </button>
                 </Tooltip>
             ) : (
-                <MenuItem className="menuItem" 
-                    style={{ backgroundColor: '#030712', maxWidth: '320px' }}>
+                <MenuItem className="" 
+                    style={{ maxWidth: '320px', backgroundColor: 'rgba(0, 0, 0, 0.0)' }}>
                     <button 
                         className="flex w-full justify-center rounded-md bg-primaryPurple py-1 text-md font-semibold leading-6 shadow-sm hover:bg-primaryVariant
                         text-onBackground" 

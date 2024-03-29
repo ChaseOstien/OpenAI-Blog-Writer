@@ -4,7 +4,7 @@ export default function SearchBar({ fetchBlog, handleChange }) {
 
     return (
         <form id="inputForm" 
-          className='my-4 flex w-4/5 mx-auto justify-evenly bg-darkGreyOpaque p-3 opacity-50 hover:opacity-100 rounded-lg shadow-xl' 
+          className='my-4 flex w-11/12 mx-auto justify-evenly bg-darkGreyOpaque p-3 opacity-50 hover:opacity-100 rounded-lg shadow-xl' 
           onSubmit={fetchBlog}>
           <div className="w-3/5">
             <input type="text"

@@ -17,19 +17,19 @@ export default function IconMenu({ collapseSidebar, setCollapseSidebar, newBlog,
                     placement="bottom-start" 
                     disableInteractive>
                         { collapseSidebar ? (
-                            <MenuItem className='menuItem'
+                            <MenuItem className=''
                                 icon={<MenuOutlinedIcon 
                                 className='icon hover:scale-125 ' />}
                                 onClick={() => setCollapseSidebar(!collapseSidebar)}
-                                style={{ textAlign: 'center', backgroundColor: '#030712' }}>
+                                style={{ textAlign: 'center', backgroundColor: 'rgba(0, 0, 0, 0.0)' }}>
                             </MenuItem> 
                         ) : (
-                            <MenuItem className='menuItem'
+                            <MenuItem className=''
                                 onClick={() => setCollapseSidebar(!collapseSidebar)}
-                                style={{ textAlign: 'center', backgroundColor: '#030712' }}>
+                                style={{ textAlign: 'center', backgroundColor: 'rgba(0, 0, 0, 0.0)' }}>
                                 {" "} 
                                 <h1 className='text-slateLight rounded-lg hover:bg-darkGreyOpaque p-1 focus:scale-90 hover:rounded-lg font-robotoRegular'>
-                                    Blog History
+                                    Toggle Menu
                                 </h1>
                             </MenuItem>
                         )}
@@ -41,16 +41,16 @@ export default function IconMenu({ collapseSidebar, setCollapseSidebar, newBlog,
                     placement="bottom-start" 
                     disableInteractive>
                         { collapseSidebar ? ( 
-                            <MenuItem className='menuItem'
+                            <MenuItem className=''
                                 icon={<OpenInNewIcon 
                                 className='icon hover:scale-125' />}
                                 onClick={newBlog}
-                                style={{ textAlign: 'center', backgroundColor: '#030712' }}>
+                                style={{ textAlign: 'center', backgroundColor: 'rgba(0, 0, 0, 0.0)' }}>
                             </MenuItem>
                         ) : (
-                            <MenuItem className='menuItem'
+                            <MenuItem className=''
                                 onClick={newBlog}
-                                style={{ textAlign: 'center', backgroundColor: '#030712' }}>
+                                style={{ textAlign: 'center', backgroundColor: 'rgba(0, 0, 0, 0.0)' }}>
                                 {" "}
                                 <h1 className='text-slateLight rounded-lg hover:bg-darkGreyOpaque p-1 hover:rounded-lg font-robotoRegular'>
                                     New Blog

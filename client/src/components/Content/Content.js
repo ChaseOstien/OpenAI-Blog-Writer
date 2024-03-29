@@ -23,13 +23,13 @@ export default function Content({ blogContent, blogTitle, blogGenerated }) {
                         null}
             </div> ) : (
         <div id="content" className="flex flex-col items-center justify-center w-4/5 mx-auto p-4 bg-darkGreyOpaque rounded-lg overflow-y-auto h-4/5 accent-inherit text-onBackground">
-            <h1 id="title" className='font-bold text-3xl mb-4 font-robotoRegular '>
+            <h1 id="title" className='font-bold text-3xl mb-4 font-robotoRegular'>
                 Blog Content Generator
             </h1>
-            <h3 className='w-2/3 text-wrap text-md font-robotoRegular'>
+            <h3 id='bio' className='w-2/3 text-wrap text-md font-robotoRegular lg:w-2/3 md:w-full md:text-center'>
                 This content generator utilizes the OpenAI API to draft blog content based on user input. The system has been primed to serve as a skilled blog writer that writes engaging and helpful posts. It will return content structured in the same format, including a title, sections and line breaks.
             </h3>
-            <h3 className='mt-3 font-semibold font-robotoRegular'>
+            <h3 className='mt-3 font-semibold text-center font-robotoRegular'>
                 To use this content generator simply enter a prompt below and click generate!
             </h3>
             <br />

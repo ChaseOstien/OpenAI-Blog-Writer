@@ -10,8 +10,14 @@ body {
   height: 100%;
 }
 
-.container {
-  background-color: #030712;
+#secondaryBackground {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 450px) {
+  #smallScreenButtonMargin {
+      margin: 8px;
+  }
 }
 
 .icon {
@@ -29,6 +35,12 @@ body {
   width: 80%;
 }
 
+@media (max-width: 1000px) {
+  #inputForm {
+   width: 90%;
+  }
+}
+
 .error {
   color: #CF6679;
   margin-top: 4px;
@@ -38,6 +50,38 @@ body {
   height: 90vh;
   width: 80%;
   justify-content: center;
+}
+
+@media (max-width: 1000px) {
+  #contentContainer {
+    height: 100vh;
+    padding: 5px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+  #content {
+   margin-top: 15px;
+    height: 85%;
+    width: 90%;
+  }
+}
+
+@media (max-width: 390px) {
+  #content {
+   margin-top: 15px;
+    height: 85%;
+    width: 90%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 770px) {
+  #bio {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 #content::-webkit-scrollbar {
@@ -54,13 +98,25 @@ body {
   border-bottom: .5px solid #BB86FC;
 }
 
-.ps-sidebar-container.css-bavqj4::-webkit-scrollbar-thumb {
-  background-color: #BB86FC;
-  border-radius: 20px;
-  
+@media (max-width: 580px) {
+  #title {
+   font-weight: 500;
+  }
 }
 
-.ps-sidebar-container.css-bavqj4::-webkit-scrollbar {
+@media (max-width: 390px) {
+  #title {
+   font-weight: 500;
+   font-size: 27px;
+  }
+}
+
+.ps-sidebar-container.css-1w04jpj::-webkit-scrollbar-thumb {
+  background-color: #BB86FC;
+  border-radius: 20px;
+}
+
+.ps-sidebar-container.css-1w04jpj::-webkit-scrollbar {
   background-color: #030712;
   width: 8px;
 }
