@@ -13,6 +13,7 @@ export default function HomePage() {
     const [clientPrompt, setClientPrompt] = useState('');
     const [blogGenerated, setBlogGenerated] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [collapseSidebar, setCollapseSidebar] = useState(true);
 
     const handleChange = (e) => {
       setClientPrompt(e.target.value)
@@ -61,6 +62,8 @@ export default function HomePage() {
         blogContent={blogContent}
         singleBlog={singleBlog}
         newBlog={newBlog}
+        collapseSidebar={collapseSidebar}
+        setCollapseSidebar={setCollapseSidebar}
       />
       { isLoading ? 
       <div id="contentContainer" 

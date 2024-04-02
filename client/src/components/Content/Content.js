@@ -27,13 +27,13 @@ export default function Content({ blogContent, blogTitle, blogGenerated }) {
                 Blog Content Generator
             </h1>
             <h3 id='bio' className='w-2/3 text-wrap text-md font-robotoRegular lg:w-2/3 md:w-full md:text-center'>
-                This content generator utilizes the OpenAI API to draft blog content based on user input. The system has been primed to serve as a skilled blog writer that writes engaging and helpful posts. It will return content structured in the same format, including a title, sections and line breaks.
+                This content generator utilizes the OpenAI API to draft blog content based on user input. The system has been primed to serve as a skilled blog writer that writes engaging and helpful posts.
             </h3>
             <h3 className='mt-3 font-semibold text-center font-robotoRegular'>
                 To use this content generator simply enter a prompt below and click generate!
             </h3>
             <br />
-            <ul className='list-disc'>
+            <ul id='list' className='list-disc'>
                 <h3 className='font-semibold mb-1 font-robotoRegular'>Example prompts:</h3>
                     <li className='p-1 font-sm font-robotoRegular'>
                         Write a blog on the importance of building a good credit score.
@@ -43,9 +43,6 @@ export default function Content({ blogContent, blogTitle, blogGenerated }) {
                     </li>
                     <li className='p-1 font-sm font-robotoRegular'>
                     Write a blog on the importance of your credit score in determining interest rates.
-                    </li>
-                    <li className='p-1 font-sm font-robotoRegular'>
-                        Write a blog that explains fractions and uses examples to support the content.
                     </li>
                 </ul>
         </div> )
