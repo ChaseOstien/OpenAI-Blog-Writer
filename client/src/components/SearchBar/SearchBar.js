@@ -6,7 +6,7 @@ export default function SearchBar({ fetchBlog, handleChange }) {
         <form id="inputForm" 
           className='my-4 flex w-11/12 mx-auto justify-evenly bg-darkGreyOpaque p-3 opacity-50 hover:opacity-100 rounded-lg shadow-xl' 
           onSubmit={fetchBlog}>
-          <div className="w-3/5">
+          <div id='searchInput' className="w-3/5">
             <input type="text"
               name="clientPrompt" 
               onChange={handleChange}
@@ -28,7 +28,8 @@ export default function SearchBar({ fetchBlog, handleChange }) {
             </input>
           </div>
           <div className="">
-            <button type="submit" 
+            <button type="submit"
+              id='generateButton'
               className='shadow-md 
                 p-2 
                 rounded-lg 

@@ -31,6 +31,23 @@ body {
   
 }
 
+.css-1sdt58x.ps-broken {
+  position: relative ;
+  height: 100vh !important;
+  top: 0px;
+  z-index: 100;
+  left: 0px !important;
+  background-color: #030712;
+  
+}
+
+
+.css-1sdt58x.ps-broken.ps-collapsed {
+  left: 0px;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.0);
+}
+
 #inputForm {
   width: 80%;
 }
@@ -84,6 +101,20 @@ body {
   }
 }
 
+@media (max-width: 450px) {
+  #generateButton {
+      width: 100%;
+      padding-inline: 6px;
+  }
+}
+
+@media (max-width: 450px) {
+  #searchInput {
+      width: 80%;
+      margin-right: 5px;
+  }
+}
+
 #content::-webkit-scrollbar {
   background-color: #030712;
   width: 8px;
@@ -101,13 +132,22 @@ body {
 @media (max-width: 580px) {
   #title {
    font-weight: 500;
+   font-size: 24px;
   }
 }
 
 @media (max-width: 390px) {
   #title {
    font-weight: 500;
-   font-size: 27px;
+   font-size: 20px;
+  }
+}
+
+@media (max-width: 390px) {
+  #list {
+   text-align: center;
+   list-style-type: none;
+   width: 100%;
   }
 }
 

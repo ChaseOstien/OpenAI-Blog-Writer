@@ -4,10 +4,9 @@ import { useState, useEffect } from 'react'
 import { Sidebar } from 'react-pro-sidebar';
 import IconMenu from './IconMenu';
 
-
-export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
+export default function HistoryBar({ blogContent, singleBlog, newBlog, collapseSidebar, setCollapseSidebar }) {
     const [blogHistory, setBlogHistory] = useState([])
-    const [collapseSidebar, setCollapseSidebar] = useState(true);
+    
 
     useEffect(() => {
         async function getBlogs() {
@@ -43,8 +42,9 @@ export default function HistoryBar({ blogContent, singleBlog, newBlog }) {
                 backgroundColor='secondaryBackground' 
                 transitionDuration={300} 
                 breakPoint='sm' 
-                width='300px'>
-                <IconMenu 
+                width='300px'
+                onBackdropClick={() => setCollapseSidebar(!collapseSidebar)}>
+                     <IconMenu 
                     collapseSidebar={collapseSidebar}
                     setCollapseSidebar={setCollapseSidebar}
                     newBlog={newBlog}
